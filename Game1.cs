@@ -15,6 +15,12 @@ namespace SpaceInvaders
         private Player player;
         private List<SingleBullet> bullets;
 
+        private SpriteFont FPSfont;
+        private int frameCount = 0;
+        private float elapsedTime = 0f;
+        private int fps = 0;
+        
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -36,7 +42,9 @@ namespace SpaceInvaders
             background = Content.Load<Texture2D>("wp");
             playerTexture = Content.Load<Texture2D>("player");
             bulletTexture = Content.Load<Texture2D>("bullet");
-
+    
+            FPSfont = Content.Load<SpriteFont>("arial");
+            
             player = new Player(playerTexture,
                 new Vector2(GraphicsDevice.Viewport.Width / 2 - 50, GraphicsDevice.Viewport.Height - 100), bulletTexture, bullets);
         }
@@ -56,6 +64,8 @@ namespace SpaceInvaders
                     bullets.RemoveAt(i);
                 }
             }
+            
+            CalculateFPS(gameTime);
 
             base.Update(gameTime);
         }
@@ -73,9 +83,26 @@ namespace SpaceInvaders
                 bullet.Draw(_spriteBatch);
             }
 
+            
+            
+            _spriteBatch.DrawString(FPSfont, $"FPS: {fps}", new Vector2(10, 10), Color.Yellow);
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+        private void CalculateFPS(GameTime gameTime)
+        {
+            elapsedTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            frameCount++;
+
+            if (elapsedTime >= 1f) // update FPS every second
+            {
+                fps = frameCount;
+                frameCount = 0;
+                elapsedTime = 0f;
+            }
+        }
+        
     }
 }
