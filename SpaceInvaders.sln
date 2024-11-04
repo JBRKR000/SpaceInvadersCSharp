@@ -1,0 +1,13 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceInvaders", "SpaceInvaders.csproj", "{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		|Any CPU = |Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}.|Any CPU.ActiveCfg = |Any CPU
+		{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}.|Any CPU.Build.0 = |Any CPU
+	EndGlobalSection
+EndGlobal
