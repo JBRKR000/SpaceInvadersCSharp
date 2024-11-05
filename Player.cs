@@ -38,12 +38,18 @@ namespace SpaceInvaders
             
             if (keyboardState.IsKeyDown(Keys.A))
             {
-                startPosition.X -= playerSpeed * deltaTime;
+                if (!(startPosition.X < 0))
+                {
+                    startPosition.X -= playerSpeed * deltaTime;    
+                }
             }
 
             if (keyboardState.IsKeyDown(Keys.D))
             {
-                startPosition.X += playerSpeed * deltaTime;
+                if (!(startPosition.X >= Game1.getScreenWidth()-50))
+                {
+                    startPosition.X += playerSpeed * deltaTime;   
+                }
             }
             
             if (keyboardState.IsKeyDown(Keys.Space) && timeSinceLastShot >= shootInterval)

@@ -7,7 +7,7 @@ namespace SpaceInvaders
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private static GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D background;
         private Texture2D playerTexture;
@@ -102,6 +102,11 @@ namespace SpaceInvaders
                 frameCount = 0;
                 elapsedTime = 0f;
             }
+        }
+
+        public static int getScreenWidth()
+        {
+            return _graphics.GraphicsDevice.Viewport.Width;
         }
         
     }
