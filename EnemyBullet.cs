@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceInvaders
 {
-    public class SingleBullet
+    public class EnemyBullet
     {
         private Vector2 position;
         private Texture2D bulletTexture;
-        private float bulletSpeed = 750f;
+        private float bulletSpeed = 600f;
 
-        public SingleBullet(Texture2D bulletTexture, Vector2 startPosition)
+        public EnemyBullet(Texture2D bulletTexture, Vector2 startPosition)
         {
             this.position = startPosition;
             this.bulletTexture = bulletTexture;
@@ -23,12 +23,12 @@ namespace SpaceInvaders
         public void Update(GameTime gameTime)
         {
             var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            position.Y -= bulletSpeed * deltaTime;
+            position.Y += bulletSpeed * deltaTime;
         }
 
         public bool IsOffScreen()
         {
-            return position.Y < -bulletTexture.Height;
+            return position.Y < bulletTexture.Height;
         }
     }
 }
