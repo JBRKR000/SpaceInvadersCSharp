@@ -15,6 +15,7 @@ namespace SpaceInvaders
         private bool isSpacePressed;
         private float shootInterval = 0.25f;
         private float timeSinceLastShot = 0f;
+        private int health=100;
 
         public Player(Texture2D playerTexture, Vector2 startPosition, Texture2D bulletTexture, List<SingleBullet> bullets)
         {
