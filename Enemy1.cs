@@ -11,6 +11,9 @@ namespace SpaceInvaders
         private Vector2 position;
         private Texture2D enemyTexture;
         private float enemySpeed = 100f;
+		public Rectangle rectangle;
+
+
         private Texture2D bulletTexture;
         private float shootInterval = 2f;
         private float timeSinceLastShot = 0f;
@@ -20,6 +23,9 @@ namespace SpaceInvaders
         private int direction = 1;
         private float directionChangeInterval = 3f;
         private float timeSinceLastDirectionChange = 0f;
+
+        public int health = 50;
+
 
         public Enemy1(Texture2D enemyTexture, Vector2 position, Texture2D bulletTexture, List<EnemyBullet> bullets)
         {
@@ -32,12 +38,18 @@ namespace SpaceInvaders
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(enemyTexture, position, Color.White);
+            if (health > 0)
+			{
+				spriteBatch.Draw(enemyTexture, position, Color.White);
+			}
         }
 
         public void Update(GameTime gameTime)
         {
-            timeSinceLastDirectionChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
+			rectangle = new Rectangle((int)position.X, (int)position.Y, enemyTexture.Width, enemyTexture.Height);
+
+
+			timeSinceLastDirectionChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timeSinceLastDirectionChange >= directionChangeInterval)
             {
                 direction = random.Next(0, 2) == 0 ? -1 : 1;
@@ -60,8 +72,8 @@ namespace SpaceInvaders
         {
             Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2, position.Y);
             Vector2 bulletPosition2 = new Vector2(position.X + enemyTexture.Width / 2 - 60, position.Y);
-            bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1));
-            bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2));
+            bullets.Add(new EnemyBullet(bulletTexture,bulletPosition1,this,10)); //przypisanie pociskow do przeciwnika
+            bullets.Add(new EnemyBullet(bulletTexture,bulletPosition2,this,10)); 
         }
     }
 }
