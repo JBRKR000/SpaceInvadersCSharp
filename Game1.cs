@@ -21,7 +21,8 @@ namespace SpaceInvaders
         private List<SingleBullet> bullets;
 		private Texture2D healthTexture;
 		private Rectangle healthRectangle;
-
+        private Texture2D healthBarTexture;
+		private Rectangle healthBarRectangle;
 		//enemy
 		private List<EnemyBullet> enemybullets;
         private List<Enemy1> enemies;
@@ -34,13 +35,17 @@ namespace SpaceInvaders
         private float elapsedTime = 0f;
         private int fps = 0;
 
-        public Game1()
+
+		private SpriteFont Pixelfont;
+
+		public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.PreferredBackBufferWidth = 1280;
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+			
+			Content.RootDirectory = "Content";
+            
         }
 
         protected override void Initialize()
@@ -61,16 +66,18 @@ namespace SpaceInvaders
             //player
             playerTexture = Content.Load<Texture2D>("player");
             bulletTexture = Content.Load<Texture2D>("bullet");
-			healthTexture = Content.Load<Texture2D>("health");
-
+			healthTexture = Content.Load<Texture2D>("healthTexture");
+			healthBarTexture = Content.Load<Texture2D>("healthBarTexture");
 			//enemy
 			enemyBullet = Content.Load<Texture2D>("bullet_enemy");
             enemyTexture = Content.Load<Texture2D>("enemy");
 
-            //fps
+            //fonts
             FPSfont = Content.Load<SpriteFont>("arial");
+			Pixelfont = Content.Load<SpriteFont>("Fonts/PixelFont");
 
-            player = new Player(playerTexture,
+
+			player = new Player(playerTexture,
                 new Vector2(GraphicsDevice.Viewport.Width / 2 - 50, GraphicsDevice.Viewport.Height - 100), bulletTexture, bullets,100);
 
             
@@ -89,8 +96,9 @@ namespace SpaceInvaders
                 //mozemy tu dodac przelaczanie na jakas scene game over gdy gracz umrze
             }
            
-            healthRectangle = new Rectangle(50,20, player.health, 20);
-            player.Update(gameTime);
+            healthRectangle = new Rectangle(50,20, player.health*2, 40);
+			healthBarRectangle = new Rectangle(50, 20, 200, 40);
+			player.Update(gameTime);
 
 			var keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Escape))
@@ -154,7 +162,8 @@ namespace SpaceInvaders
             _spriteBatch.Draw(background, GraphicsDevice.Viewport.Bounds, Color.White);
 
             _spriteBatch.Draw(healthTexture,healthRectangle, Color.White);
-            player.Draw(_spriteBatch);
+			_spriteBatch.Draw(healthBarTexture, healthBarRectangle, Color.White);
+			player.Draw(_spriteBatch);
 
 
             player.Draw(_spriteBatch);
@@ -172,6 +181,11 @@ namespace SpaceInvaders
             }
 
             _spriteBatch.DrawString(FPSfont, $"FPS: {fps}", new Vector2(1215, 10), Color.Yellow);
+
+            if (player.health <= 0)
+            {
+				_spriteBatch.DrawString(Pixelfont, $"GAME OVER", new Vector2(500, 340), Color.White);
+			}
            
             _spriteBatch.End();
             base.Draw(gameTime);

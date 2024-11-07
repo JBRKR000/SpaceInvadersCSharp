@@ -34,7 +34,14 @@ namespace SpaceInvaders
             this.bulletTexture = bulletTexture;
             this.bullets = bullets;
             random = new Random();
-        }
+
+			// Ustaw losowy czas między strzałami od 1 do 3 sekund
+			shootInterval = (float)random.NextDouble() * 2f + 1f;
+
+			// Ustaw losowe początkowe opóźnienie przed pierwszym strzałem
+			timeSinceLastShot = (float)random.NextDouble() * shootInterval;
+
+		}
 
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -49,6 +56,7 @@ namespace SpaceInvaders
 			rectangle = new Rectangle((int)position.X, (int)position.Y, enemyTexture.Width, enemyTexture.Height);
 
 
+            //poruszanie sie
 			timeSinceLastDirectionChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timeSinceLastDirectionChange >= directionChangeInterval)
             {
@@ -60,12 +68,14 @@ namespace SpaceInvaders
             if (position.X > Game1.getScreenWidth() - enemyTexture.Width)
                 position.X = Game1.getScreenWidth() - enemyTexture.Width;
 
+            //strzelanie
             timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timeSinceLastShot >= shootInterval)
             {
                 Shoot();
                 timeSinceLastShot = 0f;
-            }
+				shootInterval = (float)random.NextDouble() * 2f + 1f; // Losowy czas od 1 do 3 sekund
+			}
         }
 
         private void Shoot()
