@@ -16,7 +16,7 @@ namespace SpaceInvaders
         private float shootInterval = 0.25f;
         private float timeSinceLastShot = 0f;
 
-        public int health=100;
+        public int health=1000;
 
         public Rectangle rectangle; //cialo 
 
@@ -50,8 +50,6 @@ namespace SpaceInvaders
 			var keyboardState = Keyboard.GetState();
 
 			timeSinceLastShot += deltaTime;
-
-			// Sprawdzanie, czy gracz żyje (czy zdrowie > 0)
 			if (health > 0)
 			{
 				// Ruch gracza

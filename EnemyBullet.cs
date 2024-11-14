@@ -10,7 +10,7 @@ namespace SpaceInvaders
         private float bulletSpeed = 600f;
 		internal Rectangle rectangle;
         public int damage;
-		public Enemy1 owner; // Przeciwnik, który wystrzelił pocisk
+		public Enemy1 owner;
 
 
 		public EnemyBullet(Texture2D bulletTexture, Vector2 startPosition, Enemy1 owner,int damage)
