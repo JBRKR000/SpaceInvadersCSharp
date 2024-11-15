@@ -38,6 +38,8 @@ namespace SpaceInvaders
 
         public override void LoadContent()
         {
+           
+			
             _spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             background = Game.Content.Load<Texture2D>("wp");
 
@@ -97,17 +99,19 @@ namespace SpaceInvaders
                 enemy.Update(gameTime);
             }
 
-          
-            foreach (var enemyBullet in enemybullets)
-            {
-                enemyBullet.Update(gameTime);
-                if (enemyBullet.rectangle.Intersects(player.rectangle))
-                {
-                    player.health -= enemyBullet.damage;
-                }
-            }
-           
-            for (int i = bullets.Count - 1; i >= 0; i--)
+
+			for (int i = enemybullets.Count - 1; i >= 0; i--)
+			{
+				enemybullets[i].Update(gameTime);
+				if (enemybullets[i].rectangle.Intersects(player.rectangle))
+				{
+					player.health -= enemybullets[i].damage;
+					enemybullets.RemoveAt(i); // Usunięcie pocisku po trafieniu gracza
+				}
+			}
+
+
+			for (int i = bullets.Count - 1; i >= 0; i--)
             {
                 if (bullets[i].IsOffScreen())
                 {

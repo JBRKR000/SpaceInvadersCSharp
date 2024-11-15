@@ -1,34 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SpaceInvaders.Components;
 
 namespace SpaceInvaders
 {
     public class GameOverState : GameState
     {
         private SpriteFont font;
-
-        public GameOverState(Game1 game) : base(game) { }
+		private Texture2D buttonResetTexture;
+		private Button resetButton;
+		public GameOverState(Game1 game) : base(game) { }
 
         public override void LoadContent()
         {
             font = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
-        }
+			buttonResetTexture = Game.Content.Load<Texture2D>("Controls/buttonReset");
+			resetButton = new Button(buttonResetTexture)
+			{
+				Position = new Vector2(590, 540),
 
-        public override void Update(GameTime gameTime)
+			};
+
+			resetButton.Click += ResetButton_Click;
+		}
+		private void ResetButton_Click(object sender, System.EventArgs e)
+		{
+			// Przejście do następnego stanu gry
+			Game.ChangeState(new GameplayState(Game));
+		}
+
+		public override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-            {
-                Game.ChangeState(new MenuState(Game));
-            }
-        }
+			resetButton.Update(gameTime);
+		}
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             Game.GraphicsDevice.Clear(Color.DarkRed);
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, "Game Over! Press Enter to Return to Menu", new Vector2(300, 340), Color.White);
-            spriteBatch.End();
+			
+			resetButton.Draw(spriteBatch);
+			spriteBatch.End();
         }
     }
 }

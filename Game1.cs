@@ -16,7 +16,8 @@ namespace SpaceInvaders
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
-        }
+			IsMouseVisible = true;
+		}
 
         protected override void LoadContent()
         {
