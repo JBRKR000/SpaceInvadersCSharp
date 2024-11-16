@@ -9,8 +9,10 @@ namespace SpaceInvaders
 	{
 		private SpriteFont font;
 		private Texture2D buttonPlayTexture;
+		private Texture2D buttonControlsTexture;
 		private Texture2D background;
-		private Button startButton;
+		private Button playButton;
+		private Button controlsButton;
 
 		public MenuState(Game1 game) : base(game) { }
 
@@ -18,15 +20,26 @@ namespace SpaceInvaders
 		{
 			font = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
 			buttonPlayTexture = Game.Content.Load<Texture2D>("Controls/buttonPlay");
+			buttonControlsTexture = Game.Content.Load<Texture2D>("Controls/buttonControls");
 			background = Game.Content.Load<Texture2D>("Backgrounds/menuBackground");
 			// Inicjalizacja guzika
-			startButton = new Button(buttonPlayTexture)
+			playButton = new Button(buttonPlayTexture)
 			{
 				Position = new Vector2(590, 240),
 				
 			};
 
-			startButton.Click += StartButton_Click;
+			playButton.Click += StartButton_Click;
+
+
+			controlsButton = new Button(buttonControlsTexture)
+			{
+				Position = new Vector2(510, 300),
+
+			};
+
+			controlsButton.Click += ControlsButton_Click;
+
 		}
 
 		private void StartButton_Click(object sender, System.EventArgs e)
@@ -35,9 +48,16 @@ namespace SpaceInvaders
 			Game.ChangeState(new GameplayState(Game));
 		}
 
+		private void ControlsButton_Click(object sender, System.EventArgs e)
+		{
+			// Przejście do następnego stanu gry
+			Game.ChangeState(new ControlsState(Game));
+		}
+
 		public override void Update(GameTime gameTime)
 		{
-			startButton.Update(gameTime);
+			playButton.Update(gameTime);
+			controlsButton.Update(gameTime);
 
 		}
 
@@ -49,7 +69,9 @@ namespace SpaceInvaders
 
 
 			// Rysowanie guzika
-			startButton.Draw(spriteBatch);
+			playButton.Draw(spriteBatch);
+			controlsButton.Draw(spriteBatch);
+
 
 			spriteBatch.End();
 		}

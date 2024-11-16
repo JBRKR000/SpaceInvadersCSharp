@@ -18,7 +18,7 @@ namespace SpaceInvaders
 			buttonResetTexture = Game.Content.Load<Texture2D>("Controls/buttonReset");
 			resetButton = new Button(buttonResetTexture)
 			{
-				Position = new Vector2(590, 540),
+				Position = new Vector2(590, 540)
 
 			};
 
