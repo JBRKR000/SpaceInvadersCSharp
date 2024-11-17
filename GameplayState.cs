@@ -29,7 +29,16 @@ namespace SpaceInvaders
         private float elapsedTime = 0f;
         private int fps = 0;
 
-        public GameplayState(Game1 game) : base(game)
+		private SpriteFont pixelfont;
+
+
+		//dodalem pauzowanie gry
+		private bool isPaused = false;
+		private bool wasEscPressed = false;
+
+
+
+		public GameplayState(Game1 game) : base(game)
         {
             bullets = new List<SingleBullet>();
             enemybullets = new List<EnemyBullet>();
@@ -52,9 +61,10 @@ namespace SpaceInvaders
             enemyTexture = Game.Content.Load<Texture2D>("enemy");
 
             FPSfont = Game.Content.Load<SpriteFont>("arial");
+			pixelfont = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
 
-            // Inicjalizacja gracza
-            player = new Player(playerTexture, new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 50, 620), bulletTexture, bullets, 100);
+			// Inicjalizacja gracza
+			player = new Player(playerTexture, new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 50, 620), bulletTexture, bullets, 100);
 
             // Inicjalizacja przeciwników
             enemies.Add(new Enemy1(enemyTexture, new Vector2(100, 100), enemyBullet, enemybullets, Game));
@@ -64,15 +74,34 @@ namespace SpaceInvaders
 
         public override void Update(GameTime gameTime)
         {
-            if (player.health <= 0)
-            {
-                Game.ChangeState(new GameOverState(Game));
-            }
+			KeyboardState keyboardState = Keyboard.GetState();
 
-            healthRectangle = new Rectangle(50, 20, player.health * 2, 40);
-            healthBarRectangle = new Rectangle(50, 20, 200, 40);
+			// Sprawdzenie, czy gracz nacisnął ESC
+			if (keyboardState.IsKeyDown(Keys.Escape) && !wasEscPressed)
+			{
+				isPaused = !isPaused; // Zmień stan pauzy
+				wasEscPressed = true; // Oznacz, że ESC został wciśnięty
+			}
+			else if (keyboardState.IsKeyUp(Keys.Escape))
+			{
+				wasEscPressed = false; // Resetuj stan klawisza
+			}
 
-            player.Update(gameTime);
+			if (isPaused)
+			{
+				return; // Jeśli gra jest wstrzymana, nie aktualizuj dalszych elementów
+			}
+
+			// Normalna aktualizacja gry
+			if (player.health <= 0)
+			{
+				Game.ChangeState(new GameOverState(Game));
+			}
+
+			healthRectangle = new Rectangle(50, 20, player.health * 2, 40);
+			healthBarRectangle = new Rectangle(50, 20, 200, 40);
+
+			player.Update(gameTime);
 
             
             for (int i = bullets.Count - 1; i >= 0; i--)
@@ -147,7 +176,15 @@ namespace SpaceInvaders
             }
 
             spriteBatch.DrawString(FPSfont, $"FPS: {fps}", new Vector2(1215, 10), Color.Yellow);
-            spriteBatch.End();
+
+			// Wyświetlanie komunikatu o pauzie
+			if (isPaused)
+			{
+				spriteBatch.DrawString(pixelfont, "PAUSED", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 100, Game.GraphicsDevice.Viewport.Height / 2), Color.Red);
+			}
+
+
+			spriteBatch.End();
         }
 
         private void CalculateFPS(GameTime gameTime)

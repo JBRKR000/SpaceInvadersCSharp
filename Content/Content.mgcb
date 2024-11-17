@@ -32,6 +32,18 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/controls1player.png
 
+#begin Backgrounds/deadBackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Backgrounds/deadBackground.png
+
 #begin Backgrounds/menuBackground.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -92,6 +104,18 @@
 /processorParam:TextureFormat=Color
 /build:Controls/buttonControls.png
 
+#begin Controls/buttonMenu.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Controls/buttonMenu.png
+
 #begin Controls/buttonPlay.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -104,6 +128,18 @@
 /processorParam:TextureFormat=Color
 /build:Controls/buttonPlay.png
 
+#begin Controls/buttonQuit.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Controls/buttonQuit.png
+
 #begin Controls/buttonReset.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -115,6 +151,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Controls/buttonReset.png
+
+#begin Controls/buttonSettings.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Controls/buttonSettings.png
 
 #begin enemy.png
 /importer:TextureImporter
