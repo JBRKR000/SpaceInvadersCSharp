@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace SpaceInvaders
@@ -37,12 +38,22 @@ namespace SpaceInvaders
 		private bool wasEscPressed = false;
 
 
+        //powerup
+        private List<PowerUp> powerUps; // Lista aktywnych power-upów
+        private Texture2D healthPowerupTexture; // Tekstura power-upa
+        private Random random; // Generator losowy
 
-		public GameplayState(Game1 game) : base(game)
+        
+        
+
+        public GameplayState(Game1 game) : base(game)
         {
             bullets = new List<SingleBullet>();
             enemybullets = new List<EnemyBullet>();
             enemies = new List<Enemy1>();
+            powerUps = new List<PowerUp>();
+            random = new Random();
+
         }
 
         public override void LoadContent()
@@ -59,6 +70,9 @@ namespace SpaceInvaders
 
             enemyBullet = Game.Content.Load<Texture2D>("bullet_enemy");
             enemyTexture = Game.Content.Load<Texture2D>("enemy");
+
+            healthPowerupTexture = Game.Content.Load<Texture2D>("PowerUps/healthPowerup");
+
 
             FPSfont = Game.Content.Load<SpriteFont>("arial");
 			pixelfont = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
@@ -103,7 +117,40 @@ namespace SpaceInvaders
 
 			player.Update(gameTime);
 
-            
+            for (int i = enemies.Count - 1; i >= 0; i--)
+            {
+                if (enemies[i].health <= 0)
+                {
+                    // Szansa 15% na wygenerowanie power-upa
+                    if (random.Next(0, 100) < 90)
+                    {
+                        powerUps.Add(new PowerUp(healthPowerupTexture, enemies[i].rectangle.Location.ToVector2()));
+                    }
+                    // Usuń przeciwnika po wykonaniu logiki
+                    enemies.RemoveAt(i);
+                }
+            }
+
+            for (int i = powerUps.Count - 1; i >= 0; i--)
+            {
+                powerUps[i].Update(gameTime);
+
+                // Sprawdź kolizję z graczem
+                if (powerUps[i].Rectangle.Intersects(player.rectangle))
+                {
+                    player.health += 20; // Leczenie gracza
+                    if (player.health > 100) player.health = 100; // Maksymalne zdrowie 100
+                    powerUps[i].Collect();
+                }
+
+                // Usuwanie zebranych lub poza ekranem
+                if (powerUps[i].IsCollected)
+                {
+                    powerUps.RemoveAt(i);
+                }
+            }
+
+
             for (int i = bullets.Count - 1; i >= 0; i--)
             {
                 bullets[i].Update(gameTime);
@@ -120,16 +167,15 @@ namespace SpaceInvaders
             }
 
            
-            enemies.RemoveAll(enemy => enemy.health <= 0);
 
             
             foreach (var enemy in enemies)
             {
                 enemy.Update(gameTime);
             }
+            
 
-
-			for (int i = enemybullets.Count - 1; i >= 0; i--)
+            for (int i = enemybullets.Count - 1; i >= 0; i--)
 			{
 				enemybullets[i].Update(gameTime);
 				if (enemybullets[i].rectangle.Intersects(player.rectangle))
@@ -173,6 +219,10 @@ namespace SpaceInvaders
             foreach (var enemyBullet in enemybullets)
             {
                 enemyBullet.Draw(spriteBatch);
+            }
+            foreach (var powerUp in powerUps)
+            {
+                powerUp.Draw(spriteBatch);
             }
 
             spriteBatch.DrawString(FPSfont, $"FPS: {fps}", new Vector2(1215, 10), Color.Yellow);
