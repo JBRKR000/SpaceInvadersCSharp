@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceInvaders
@@ -9,6 +11,8 @@ namespace SpaceInvaders
         private SpriteBatch _spriteBatch;
 
         private GameState _currentState;
+        
+        
 
         public Game1()
         {
@@ -21,6 +25,7 @@ namespace SpaceInvaders
 
         protected override void LoadContent()
         {
+           
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             ChangeState(new MenuState(this));
         }
@@ -47,6 +52,21 @@ namespace SpaceInvaders
         {
             return _graphics.GraphicsDevice.Viewport.Width;
         }
+        public static Texture2D CreateRectangleTexture(GraphicsDevice graphicsDevice, int width, int height, Color color)
+        {
+            if (width <= 0 || height <= 0)
+            {
+                
+            }
+
+            Texture2D texture = new Texture2D(graphicsDevice, width, height);
+            Color[] data = new Color[width * height];
+            for (int i = 0; i < data.Length; ++i)
+                data[i] = color;
+            texture.SetData(data);
+            return texture;
+        }
+
     }
    
 }

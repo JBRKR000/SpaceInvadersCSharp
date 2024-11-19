@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
 
 namespace SpaceInvaders
 {
@@ -42,10 +43,17 @@ namespace SpaceInvaders
         private List<PowerUp> powerUps; // Lista aktywnych power-upów
         private Texture2D healthPowerupTexture; // Tekstura power-upa
         private Random random; // Generator losowy
-
         
         
+        //sound
+        private SoundEffect explosion = SoundEffect.FromFile("../../../Content/Sounds/enemy_boom.wav");
+        private SoundEffectInstance explodeSound;
 
+		//LEVEL GENERATION
+		private long randomPosX;
+		private long randomPosY;
+        private static int LEVEL = 1;
+        
         public GameplayState(Game1 game) : base(game)
         {
             bullets = new List<SingleBullet>();
@@ -53,6 +61,8 @@ namespace SpaceInvaders
             enemies = new List<Enemy1>();
             powerUps = new List<PowerUp>();
             random = new Random();
+            explodeSound = explosion.CreateInstance();
+            explodeSound.Volume = 0.5f;
 
         }
 
@@ -79,15 +89,12 @@ namespace SpaceInvaders
 
 			// Inicjalizacja gracza
 			player = new Player(playerTexture, new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 50, 620), bulletTexture, bullets, 100);
-
-            // Inicjalizacja przeciwników
-            enemies.Add(new Enemy1(enemyTexture, new Vector2(100, 100), enemyBullet, enemybullets, Game));
-            enemies.Add(new Enemy1(enemyTexture, new Vector2(400, 150), enemyBullet, enemybullets, Game));
-            enemies.Add(new Enemy1(enemyTexture, new Vector2(700, 200), enemyBullet, enemybullets, Game));
+			addEnemies();
         }
 
         public override void Update(GameTime gameTime)
         {
+	        randomPosGen();
 			KeyboardState keyboardState = Keyboard.GetState();
 
 			// Sprawdzenie, czy gracz nacisnął ESC
@@ -122,10 +129,12 @@ namespace SpaceInvaders
                 if (enemies[i].health <= 0)
                 {
                     // Szansa 15% na wygenerowanie power-upa
-                    if (random.Next(0, 100) < 90)
+                    if (random.Next(0, 100) < 15)
                     {
                         powerUps.Add(new PowerUp(healthPowerupTexture, enemies[i].rectangle.Location.ToVector2()));
                     }
+                    //odtwórz dźwięk wybuchu gdy znika przeciwnik
+                    explodeSound.Play();
                     // Usuń przeciwnika po wykonaniu logiki
                     enemies.RemoveAt(i);
                 }
@@ -194,6 +203,14 @@ namespace SpaceInvaders
                 }
             }
 
+			//SPRAWDZAM CZY PRZEZSZŁO SIĘ POZIOM
+            if (enemies.Count == 0)
+            {
+	            LEVEL++;
+	            addEnemies();
+            }
+			
+			
             CalculateFPS(gameTime);
         }
 
@@ -248,6 +265,46 @@ namespace SpaceInvaders
                 frameCount = 0;
                 elapsedTime = 0f;
             }
+        }
+
+        public void addEnemies()
+        {
+	        //SWITCH KTÓRY BĘDZIE DO PRZEŁĄCZANIA SCENARIUSZY DROPU PRZECIWNIKÓW!!!!!
+	        switch (LEVEL)
+	        {
+		        case 1:
+		        {
+			        // Inicjalizacja przeciwników randomPosX = new Random().NextInt64(25, 500);
+			        randomPosGen();
+			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy1(enemyTexture,new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
+			        break;
+		        }
+		        case 2:
+		        {
+			        // Inicjalizacja przeciwników
+			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+			        break;
+		        }
+	        }
+	        
+        }
+
+        public void randomPosGen()
+        {
+	        randomPosX = new Random().NextInt64(25, 500);
+	        randomPosY = new Random().NextInt64(25, 250);
         }
     }
 }

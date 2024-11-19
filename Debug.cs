@@ -1,13 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace SpaceInvaders
 {
-    public class DebugWindow
+    public class DebugWindow : Game
     {
+        private GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
         private SpriteFont _font;
         private List<string> _variables;
         private List<float> _values;
@@ -16,20 +17,28 @@ namespace SpaceInvaders
 
         public DebugWindow(SpriteFont font)
         {
+            _graphics = new GraphicsDeviceManager(this);
+            Content.RootDirectory = "Content";
+            IsMouseVisible = true;
+
             _font = font;
             _variables = new List<string>();
             _values = new List<float>();
         }
 
-        // Dodaj zmienną do debugowania
+        protected override void LoadContent()
+        {
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _font = Content.Load<SpriteFont>("Arial"); // upewnij się, że masz odpowiednią czcionkę
+        }
+
         public void AddVariable(string name, ref float value)
         {
             _variables.Add(name);
             _values.Add(value);
         }
 
-        // Aktualizacja debug okna (np. obsługa klawiatury)
-        public void Update()
+        protected override void Update(GameTime gameTime)
         {
             KeyboardState keyboardState = Keyboard.GetState();
 
@@ -54,22 +63,22 @@ namespace SpaceInvaders
             }
 
             _previousKeyboardState = keyboardState;
+            base.Update(gameTime);
         }
 
-        // Rysowanie debug okna
-        public void Draw(SpriteBatch spriteBatch)
+        protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _spriteBatch.Begin();
             for (int i = 0; i < _variables.Count; i++)
             {
                 Color color = i == _selectedIndex ? Color.Yellow : Color.White;
-                spriteBatch.DrawString(_font, $"{_variables[i]}: {_values[i]:0.00}", new Vector2(10, 20 + i * 20), color);
+                _spriteBatch.DrawString(_font, $"{_variables[i]}: {_values[i]:0.00}", new Vector2(10, 20 + i * 20), color);
             }
-        }
+            _spriteBatch.End();
 
-        // Pobierz wartość zmiennej
-        public float GetValue(int index)
-        {
-            return _values[index];
+            base.Draw(gameTime);
         }
     }
 }
