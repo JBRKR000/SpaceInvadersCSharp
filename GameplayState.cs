@@ -24,7 +24,9 @@ namespace SpaceInvaders
         private List<EnemyBullet> enemybullets;
         private List<Enemy1> enemies;
         private Texture2D enemyTexture;
+        private Texture2D enemyTexture2;
         private Texture2D enemyBullet;
+        private Texture2D enemyBullet2;
 
         private SpriteFont FPSfont;
         private int frameCount = 0;
@@ -49,10 +51,13 @@ namespace SpaceInvaders
         private SoundEffect explosion = SoundEffect.FromFile("../../../Content/Sounds/enemy_boom.wav");
         private SoundEffectInstance explodeSound;
 
+        private SoundEffect music = SoundEffect.FromFile("../../../Content/Music/CosmicConquest.wav");
+        private SoundEffectInstance musicInstance;
+        
 		//LEVEL GENERATION
 		private long randomPosX;
 		private long randomPosY;
-        private static int LEVEL = 1;
+        private static int LEVEL { get; set; } = 1;
         
         public GameplayState(Game1 game) : base(game)
         {
@@ -61,6 +66,7 @@ namespace SpaceInvaders
             enemies = new List<Enemy1>();
             powerUps = new List<PowerUp>();
             random = new Random();
+            musicInstance = music.CreateInstance();
             explodeSound = explosion.CreateInstance();
             explodeSound.Volume = 0.5f;
 
@@ -80,10 +86,14 @@ namespace SpaceInvaders
 
             enemyBullet = Game.Content.Load<Texture2D>("bullet_enemy");
             enemyTexture = Game.Content.Load<Texture2D>("enemy");
+            
+            enemyTexture2 = Game.Content.Load<Texture2D>("enemy2");
+            enemyBullet2 = Game.Content.Load<Texture2D>("bullet2");
 
             healthPowerupTexture = Game.Content.Load<Texture2D>("PowerUps/healthPowerup");
 
-
+			musicInstance.Volume = 0.1f;
+			musicInstance.Play();
             FPSfont = Game.Content.Load<SpriteFont>("arial");
 			pixelfont = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
 
@@ -209,8 +219,12 @@ namespace SpaceInvaders
 	            LEVEL++;
 	            addEnemies();
             }
-			
-			
+
+            if (player.health <= 0)
+            {
+	            musicInstance.Stop();
+	            LEVEL = 1;
+            }
             CalculateFPS(gameTime);
         }
 
@@ -220,7 +234,16 @@ namespace SpaceInvaders
             spriteBatch.Draw(background, Game.GraphicsDevice.Viewport.Bounds, Color.White);
             spriteBatch.Draw(healthTexture, healthRectangle, Color.White);
             spriteBatch.Draw(healthBarTexture, healthBarRectangle, Color.White);
-
+            switch (getLEVEL())
+            {
+	            case 1:
+		            spriteBatch.DrawString(pixelfont, "LEVEL1", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+		            break;
+	            case 2:
+		            spriteBatch.DrawString(pixelfont, "LEVEL2", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+		            break;
+				
+            }
             player.Draw(spriteBatch);
 
             foreach (var bullet in bullets)
@@ -249,6 +272,8 @@ namespace SpaceInvaders
 			{
 				spriteBatch.DrawString(pixelfont, "PAUSED", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 100, Game.GraphicsDevice.Viewport.Height / 2), Color.Red);
 			}
+
+			
 
 
 			spriteBatch.End();
@@ -281,6 +306,10 @@ namespace SpaceInvaders
 			        enemies.Add(new Enemy1(enemyTexture,new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
 			        randomPosGen();
 			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
 			        break;
 		        }
 		        case 2:
@@ -295,6 +324,10 @@ namespace SpaceInvaders
 			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
 			        randomPosGen();
 			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
+			        randomPosGen();
+			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
 			        break;
 		        }
 	        }
@@ -306,5 +339,12 @@ namespace SpaceInvaders
 	        randomPosX = new Random().NextInt64(25, 500);
 	        randomPosY = new Random().NextInt64(25, 250);
         }
+
+        public int getLEVEL()
+        {
+	        return LEVEL;
+        }
+        
+        
     }
 }

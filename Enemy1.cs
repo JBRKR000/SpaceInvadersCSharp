@@ -8,30 +8,30 @@ namespace SpaceInvaders
 {
     public class Enemy1
     {
-        private Vector2 position;
-        private Texture2D enemyTexture;
-        private float enemySpeed = 100f;
+        protected Vector2 position;
+        protected Texture2D enemyTexture;
+        protected float enemySpeed = 100f;
         public Rectangle rectangle;
 
-        private Texture2D bulletTexture;
-        private float shootInterval = 2f;
-        private double timeSinceLastShot = 0f;
-        private List<EnemyBullet> bullets;
-        private Game1 Game;
+        protected Texture2D bulletTexture;
+        protected float shootInterval = 2f;
+        protected double timeSinceLastShot = 0f;
+        protected List<EnemyBullet> bullets;
+        protected Game1 Game;
 
-        private Random random;
-        private int direction = 1;
-        private float directionChangeInterval = 3f;
-        private float timeSinceLastDirectionChange = 0f;
+        protected Random random;
+        protected int direction = 1;
+        protected float directionChangeInterval = 3f;
+        protected float timeSinceLastDirectionChange = 0f;
 
         public int health = 50;
-        private int maxHealth = 50;
+        protected int maxHealth = 50;
 
-        private SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/2.wav");
-        private SoundEffectInstance bulletSoundInstance;
+        protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/2.wav");
+        protected SoundEffectInstance bulletSoundInstance;
         
-        private Color healthBarColor = Color.Green;
-        private Color healthBarBackgroundColor = Color.Red;
+        protected Color healthBarColor = Color.Green;
+        protected Color healthBarBackgroundColor = Color.Red;
 
         public Enemy1(Texture2D enemyTexture, Vector2 position, Texture2D bulletTexture, List<EnemyBullet> bullets, Game1 game)
         {

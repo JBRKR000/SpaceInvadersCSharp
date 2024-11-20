@@ -224,6 +224,18 @@
 /processorParam:TextureFormat=Color
 /build:bullet.png
 
+#begin bullet2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bullet2.png
+
 #begin Controls/buttonBack.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -320,6 +332,18 @@
 /processorParam:TextureFormat=Color
 /build:enemy.png
 
+#begin enemy2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy2.png
+
 #begin Fonts/PixelFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -362,6 +386,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:healthTexture.png
+
+#begin Music/ChaseTheDestroyers.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/ChaseTheDestroyers.wav
+
+#begin Music/CosmicConquest.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Music/CosmicConquest.wav
 
 #begin player.png
 /importer:TextureImporter
