@@ -27,14 +27,15 @@ namespace SpaceInvaders
         private Texture2D enemyTexture2;
         private Texture2D enemyBullet;
         private Texture2D enemyBullet2;
-
-        private SpriteFont FPSfont;
+		private Texture2D bossTexture;
+		private SpriteFont FPSfont;
         private int frameCount = 0;
         private float elapsedTime = 0f;
         private int fps = 0;
 
 		private SpriteFont pixelfont;
 
+        private int player_score=0;
 
 		//dodalem pauzowanie gry
 		private bool isPaused = false;
@@ -90,7 +91,10 @@ namespace SpaceInvaders
             enemyTexture2 = Game.Content.Load<Texture2D>("enemy2");
             enemyBullet2 = Game.Content.Load<Texture2D>("bullet2");
 
-            healthPowerupTexture = Game.Content.Load<Texture2D>("PowerUps/healthPowerup");
+
+			bossTexture = Game.Content.Load<Texture2D>("bossTexture");
+
+			healthPowerupTexture = Game.Content.Load<Texture2D>("PowerUps/healthPowerup");
 
 			musicInstance.Volume = 0.1f;
 			musicInstance.Play();
@@ -137,9 +141,10 @@ namespace SpaceInvaders
             for (int i = enemies.Count - 1; i >= 0; i--)
             {
                 if (enemies[i].health <= 0)
-                {
-                    // Szansa 15% na wygenerowanie power-upa
-                    if (random.Next(0, 100) < 15)
+				{
+					player_score += enemies[i].score;//dodanie punktów
+					// Szansa 15% na wygenerowanie power-upa
+					if (random.Next(0, 100) < 15)
                     {
                         powerUps.Add(new PowerUp(healthPowerupTexture, enemies[i].rectangle.Location.ToVector2()));
                     }
@@ -234,7 +239,9 @@ namespace SpaceInvaders
             spriteBatch.Draw(background, Game.GraphicsDevice.Viewport.Bounds, Color.White);
             spriteBatch.Draw(healthTexture, healthRectangle, Color.White);
             spriteBatch.Draw(healthBarTexture, healthBarRectangle, Color.White);
-            switch (getLEVEL())
+			spriteBatch.DrawString(pixelfont, $"SCORE: {player_score}", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 75, 10), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0f); //mozna skalowac napisy wow
+
+			switch (getLEVEL())
             {
 	            case 1:
 		            spriteBatch.DrawString(pixelfont, "LEVEL1", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
@@ -242,8 +249,11 @@ namespace SpaceInvaders
 	            case 2:
 		            spriteBatch.DrawString(pixelfont, "LEVEL2", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 		            break;
-				
-            }
+                case 3:
+					spriteBatch.DrawString(pixelfont, "LEVEL3", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
+
+			}
             player.Draw(spriteBatch);
 
             foreach (var bullet in bullets)
@@ -330,7 +340,16 @@ namespace SpaceInvaders
 			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
 			        break;
 		        }
-	        }
+				case 3:
+					{
+						// Inicjalizacja przeciwników randomPosX = new Random().NextInt64(25, 500);
+						randomPosGen();
+						enemies.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+						
+						break;
+					}
+				
+			}
 	        
         }
 

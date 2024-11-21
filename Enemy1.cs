@@ -24,23 +24,29 @@ namespace SpaceInvaders
         protected float directionChangeInterval = 3f;
         protected float timeSinceLastDirectionChange = 0f;
 
-        public int health = 50;
-        protected int maxHealth = 50;
+		public int health;
+		protected int maxHealth;
 
-        protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/2.wav");
+		protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/2.wav");
         protected SoundEffectInstance bulletSoundInstance;
         
         protected Color healthBarColor = Color.Green;
         protected Color healthBarBackgroundColor = Color.Red;
 
-        public Enemy1(Texture2D enemyTexture, Vector2 position, Texture2D bulletTexture, List<EnemyBullet> bullets, Game1 game)
+		public virtual int score => 100;
+
+
+
+		public Enemy1(Texture2D enemyTexture, Vector2 position, Texture2D bulletTexture, List<EnemyBullet> bullets, Game1 game)
         {
             this.enemyTexture = enemyTexture;
             this.position = position;
             this.bulletTexture = bulletTexture;
             this.bullets = bullets;
             this.Game = game;
-            random = new Random();
+			this.maxHealth = 50; 
+			this.health = maxHealth;
+			random = new Random();
             bulletSoundInstance = bulletSound.CreateInstance();
         }
 
@@ -75,7 +81,7 @@ namespace SpaceInvaders
             }
         }
 
-        private void Shoot()
+		protected virtual void Shoot()
         {
             bulletSoundInstance.Volume = 0.25f;
             if (bulletSoundInstance.State != SoundState.Playing)

@@ -200,6 +200,18 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/menuBackground.png
 
+#begin bossTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bossTexture.png
+
 #begin bullet_enemy.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -422,18 +434,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PowerUps/healthPowerup.png
-
-#begin PowerUps/test.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:PowerUps/test.png
 
 #begin Sounds/1.wav
 /importer:WavImporter

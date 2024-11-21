@@ -18,7 +18,7 @@ public class PowerUp
 
     public void Update(GameTime gameTime)
     {
-        position.Y += 100f * (float)gameTime.ElapsedGameTime.TotalSeconds; // Ruch w dół
+        position.Y += 150f * (float)gameTime.ElapsedGameTime.TotalSeconds; // Ruch w dół
         Rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
     }
 
