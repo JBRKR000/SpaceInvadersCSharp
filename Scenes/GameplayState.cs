@@ -58,7 +58,15 @@ namespace SpaceInvaders
 		//LEVEL GENERATION
 		private long randomPosX;
 		private long randomPosY;
-        private static int LEVEL { get; set; } = 1;
+
+		private AnimatedExplosion animatedExplosion;
+		private const float rotation = 0;
+		private const float scale = 1;
+		private const float depth = 0.5f;
+			
+		
+		
+        private static int LEVEL { get; set; } = 3;
         
         public GameplayState(Game1 game) : base(game)
         {
@@ -70,7 +78,8 @@ namespace SpaceInvaders
             musicInstance = music.CreateInstance();
             explodeSound = explosion.CreateInstance();
             explodeSound.Volume = 0.5f;
-
+            animatedExplosion = new AnimatedExplosion(Vector2.Zero, rotation, scale, depth);
+            
         }
 
         public override void LoadContent()
@@ -91,11 +100,16 @@ namespace SpaceInvaders
             enemyTexture2 = Game.Content.Load<Texture2D>("enemy2");
             enemyBullet2 = Game.Content.Load<Texture2D>("bullet2");
 
-
+	        
+            
 			bossTexture = Game.Content.Load<Texture2D>("bossTexture");
-
+			
 			healthPowerupTexture = Game.Content.Load<Texture2D>("PowerUps/healthPowerup");
 
+			
+			
+			
+			
 			musicInstance.Volume = 0.1f;
 			musicInstance.Play();
             FPSfont = Game.Content.Load<SpriteFont>("arial");

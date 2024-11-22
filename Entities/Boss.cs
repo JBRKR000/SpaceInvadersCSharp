@@ -20,7 +20,7 @@ namespace SpaceInvaders
 			: base(enemyTexture, position, bulletTexture, bullets, game)
 		{
 			this.customBulletTexture = Game.Content.Load<Texture2D>("bullet2");
-			this.maxHealth = 1000; // Więcej zdrowia niż domyślnie
+			this.maxHealth = 2000; // Więcej zdrowia niż domyślnie
 			this.health = maxHealth;
 		}
 

@@ -52,6 +52,11 @@ namespace SpaceInvaders
         {
             return _graphics.GraphicsDevice.Viewport.Width;
         }
+
+        public static int getScreenHeight()
+        {
+            return _graphics.GraphicsDevice.Viewport.Height;
+        }
         public static Texture2D CreateRectangleTexture(GraphicsDevice graphicsDevice, int width, int height, Color color)
         {
             if (width <= 0 || height <= 0)

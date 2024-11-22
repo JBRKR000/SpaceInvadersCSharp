@@ -50,7 +50,7 @@ namespace SpaceInvaders
 
         public void Update(GameTime gameTime)
         {
-
+			Vector2 magnitude = Vector2.Zero;
 			rectangle = new Rectangle((int)startPosition.X, (int)startPosition.Y, playerTexture.Width, playerTexture.Height);
 
 			var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -64,7 +64,7 @@ namespace SpaceInvaders
 				{
 					if (!(startPosition.X < 0))
 					{
-						startPosition.X -= playerSpeed * deltaTime;
+						magnitude.X -= 1;
 					}
 				}
 
@@ -72,9 +72,30 @@ namespace SpaceInvaders
 				{
 					if (!(startPosition.X >= Game1.getScreenWidth() - 50))
 					{
-						startPosition.X += playerSpeed * deltaTime;
+						magnitude.X += 1;
 					}
 				}
+
+				if (keyboardState.IsKeyDown(Keys.W))
+				{
+					if (!(startPosition.Y < Game1.getScreenHeight()/2))
+					{
+						magnitude.Y -= 1;
+					}
+				}
+				if (keyboardState.IsKeyDown(Keys.S))
+				{
+					if (!(startPosition.Y > (Game1.getScreenHeight() - 50)))
+					{
+						magnitude.Y += 1;
+					}
+				}
+
+				if (magnitude != Vector2.Zero)
+				{
+					magnitude.Normalize();
+				}
+				startPosition += magnitude * playerSpeed * deltaTime;
 				if (keyboardState.IsKeyDown(Keys.Space) && timeSinceLastShot >= shootInterval)
 				{
 					Shoot();
