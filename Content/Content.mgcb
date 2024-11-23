@@ -248,6 +248,18 @@
 /processorParam:TextureFormat=Color
 /build:bullet2.png
 
+#begin circleTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:circleTexture.png
+
 #begin Controls/buttonBack.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -399,6 +411,18 @@
 /processorParam:TextureFormat=Color
 /build:healthTexture.png
 
+#begin laserTexture.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:laserTexture.png
+
 #begin Music/ChaseTheDestroyers.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -423,6 +447,18 @@
 /processorParam:TextureFormat=Color
 /build:player.png
 
+#begin PowerUps/fireRatePowerUp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PowerUps/fireRatePowerUp.png
+
 #begin PowerUps/healthPowerup.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -434,6 +470,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:PowerUps/healthPowerup.png
+
+#begin PowerUps/shieldPowerUp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:PowerUps/shieldPowerUp.png
 
 #begin Sounds/1.wav
 /importer:WavImporter

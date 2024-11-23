@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SpaceInvaders.Components;
+using System;
 
 namespace SpaceInvaders
 {
@@ -14,13 +15,52 @@ namespace SpaceInvaders
 		private Button resetButton;
 		private Button menuButton;
 		public GameOverState(Game1 game) : base(game) { }
+		private SpriteFont pixelfont;
+		private int finalScore;
+		private int highScore;
 
-        public override void LoadContent()
+		private string highScoreFilePath = "../highscore.txt";
+
+		private int LoadHighScore()
+		{
+			if (System.IO.File.Exists(highScoreFilePath))
+			{
+				string content = System.IO.File.ReadAllText(highScoreFilePath);
+				if (int.TryParse(content, out int highScore))
+				{
+					return highScore;
+				}
+			}
+			return 0; // Jeśli plik nie istnieje lub nie można go odczytać
+		}
+
+		private void SaveHighScore(int score)
+		{
+			System.IO.File.WriteAllText(highScoreFilePath, score.ToString());
+		}
+
+		
+
+		public GameOverState(Game1 game, int score) : base(game)
+		{
+			finalScore = score; // Wynik końcowy
+			highScore = LoadHighScore(); // Załaduj najlepszy wynik
+
+			// Zaktualizuj najlepszy wynik, jeśli obecny jest większy
+			if (finalScore > highScore)
+			{
+				highScore = finalScore;
+				SaveHighScore(highScore); // Zapisz nowy najlepszy wynik
+			}
+		}
+
+		public override void LoadContent()
         {
 			background = Game.Content.Load<Texture2D>("Backgrounds/deadBackground");
 			font = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
 			buttonResetTexture = Game.Content.Load<Texture2D>("Controls/buttonReset");
 			buttonMenuTexture = Game.Content.Load<Texture2D>("Controls/buttonMenu");
+			pixelfont = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
 			resetButton = new Button(buttonResetTexture)
 			{
 				Position = new Vector2(690, 540)
@@ -62,9 +102,34 @@ namespace SpaceInvaders
             
             spriteBatch.Begin();
 			spriteBatch.Draw(background, Game.GraphicsDevice.Viewport.Bounds, Color.White);
+			spriteBatch.DrawString(pixelfont, $"FINAL SCORE: {finalScore}", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 240, 370), Color.Yellow, 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f); //mozna skalowac napisy wow
+			spriteBatch.DrawString(
+				pixelfont,
+				$"HIGH SCORE: {highScore}",
+				new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 240, 320),
+				Color.Cyan,
+				0f,
+				Vector2.Zero,
+				1.2f,
+				SpriteEffects.None,
+				0f
+			);
+
 			resetButton.Draw(spriteBatch);
 			menuButton.Draw(spriteBatch);
 			spriteBatch.End();
         }
-    }
+
+
+
+
+
+
+
+
+
+
+
+		
+	}
 }
