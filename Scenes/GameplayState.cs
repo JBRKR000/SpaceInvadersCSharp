@@ -74,7 +74,7 @@ namespace SpaceInvaders
 		private Button menuButton;
 		private Texture2D buttonMenuTexture;
 
-		private static int LEVEL { get; set; } = 3;
+		private static int LEVEL { get; set; } = 1;
         
         public GameplayState(Game1 game) : base(game)
         {
@@ -298,7 +298,16 @@ namespace SpaceInvaders
 				}
 				if (lasers[i].rectangle.Intersects(player.rectangle))
 				{
-					player.health -= lasers[i].damage;
+					if (player.IsShieldActive)
+					{
+						lasers.RemoveAt(i);
+					}
+					else
+					{
+						player.health -= lasers[i].damage;
+						lasers.RemoveAt(i);
+					}
+					
 				}
 			}
 
