@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace SpaceInvaders
 {
@@ -9,16 +10,18 @@ namespace SpaceInvaders
     {
         private static GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
+        private KeyboardState kbs;
         private GameState _currentState;
         
         
 
         public Game1()
         {
+            
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferHeight = 720;
-            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
 			IsMouseVisible = true;
 		}
@@ -32,9 +35,22 @@ namespace SpaceInvaders
 
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState currentKbs = Keyboard.GetState();
+
+            // Sprawdzanie, czy klawisz F2 został wciśnięty
+            if (currentKbs.IsKeyDown(Keys.F2))
+            {
+               
+                _graphics.IsFullScreen = !_graphics.IsFullScreen;
+                _graphics.ApplyChanges(); // Zastosowanie zmiany
+            }
+
+            
+
             _currentState.Update(gameTime);
             base.Update(gameTime);
         }
+
 
         protected override void Draw(GameTime gameTime)
         {

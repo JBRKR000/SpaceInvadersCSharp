@@ -333,6 +333,7 @@ namespace SpaceInvaders
 	            LEVEL = 1;
             }
             CalculateFPS(gameTime);
+            
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -346,13 +347,13 @@ namespace SpaceInvaders
 			switch (getLEVEL())
             {
 	            case 1:
-		            spriteBatch.DrawString(pixelfont, "LEVEL1", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+		            spriteBatch.DrawString(pixelfont, "LEVEL1", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 700, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 		            break;
 	            case 2:
-		            spriteBatch.DrawString(pixelfont, "LEVEL2", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+		            spriteBatch.DrawString(pixelfont, "LEVEL2", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 700, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 		            break;
                 case 3:
-					spriteBatch.DrawString(pixelfont, "LEVEL3", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 420, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					spriteBatch.DrawString(pixelfont, "LEVEL3", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 700, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 					break;
 
 			}
@@ -387,7 +388,7 @@ namespace SpaceInvaders
                 powerUp.Draw(spriteBatch);
             }
 
-            spriteBatch.DrawString(FPSfont, $"FPS: {fps}", new Vector2(1215, 10), Color.Yellow);
+            spriteBatch.DrawString(FPSfont, $"FPS: {fps}", new Vector2(1815, 10), Color.Yellow);
 
 			// Wyświetlanie komunikatu o pauzie
 			if (isPaused)
