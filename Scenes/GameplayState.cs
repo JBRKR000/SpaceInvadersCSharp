@@ -24,6 +24,7 @@ namespace SpaceInvaders
 
         private List<EnemyBullet> enemybullets;
         private List<Enemy1> enemies;
+        private List<Boss> bossList;
         private Texture2D enemyTexture;
         private Texture2D enemyTexture2;
         private Texture2D enemyBullet;
@@ -74,10 +75,11 @@ namespace SpaceInvaders
 		private Button menuButton;
 		private Texture2D buttonMenuTexture;
 
-		private static int LEVEL { get; set; } = 1;
+		private static int LEVEL { get; set; } = 3;
         
         public GameplayState(Game1 game) : base(game)
         {
+	        bossList = new List<Boss>();
             bullets = new List<SingleBullet>();
             enemybullets = new List<EnemyBullet>();
 			lasers = new List<Laser>();
@@ -143,6 +145,7 @@ namespace SpaceInvaders
         }
 		private void MenuButton_Click(object sender, System.EventArgs e)
 		{
+			musicInstance.Stop();
 			// Przejście do następnego stanu gry
 			Game.ChangeState(new MenuState(Game));
 		}
@@ -252,6 +255,7 @@ namespace SpaceInvaders
 				{
 					if (bullets[i].rectangle.Intersects(enemies[j].rectangle))
 					{
+						bossList[j].health -= 10;
 						enemies[j].health -= 10;
 						bullets.RemoveAt(i);
 						break;
@@ -265,6 +269,10 @@ namespace SpaceInvaders
 			foreach (var enemy in enemies)
 			{
 				enemy.Update(gameTime);
+			}
+			foreach (var boss in bossList)
+			{
+				boss.Update(gameTime);
 			}
 
 
@@ -321,7 +329,7 @@ namespace SpaceInvaders
             }
 
 			//SPRAWDZAM CZY PRZEZSZŁO SIĘ POZIOM
-            if (enemies.Count == 0)
+            if (enemies.Count == 0 || bossList.Count == 0)
             {
 	            LEVEL++;
 	            addEnemies();
@@ -369,7 +377,10 @@ namespace SpaceInvaders
             {
                 bullet.Draw(spriteBatch);
             }
-
+            foreach (var boss in bossList)
+            {
+	            boss.Draw(spriteBatch);
+            }
             foreach (var enemy in enemies)
             {
                 enemy.Draw(spriteBatch);
@@ -458,7 +469,7 @@ namespace SpaceInvaders
 					{
 						// Inicjalizacja przeciwników randomPosX = new Random().NextInt64(25, 500);
 						randomPosGen();
-						enemies.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game, lasers));
+						bossList.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY),1000,  Game));
 						
 						break;
 					}

@@ -10,8 +10,9 @@ public class Laser
 	public int damage = 10;
 	public Enemy1 owner;
 	private float timeAlive; // Czas życia lasera
-	private float targetCenterX; // Środek bossa, za którym laser ma podążać
+	private float targetCenterX;
 	private float followSpeed = 5f; // Prędkość, z jaką laser podąża za środkiem bossa
+	private Vector2 bossPosition;
 
 	public Laser(Texture2D laserTexture, Vector2 startPosition, Enemy1 owner, int damage, float targetCenterX)
 	{
@@ -31,12 +32,10 @@ public class Laser
 
 	public void Update(GameTime gameTime)
 	{
+		
 		// Aktualizacja czasu życia
 		timeAlive += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-		// Laser podąża za środkiem bossa
-		position.X += (targetCenterX - position.X) * followSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
+		position.X = bossPosition.X;
 		// Aktualizacja prostokąta reprezentującego laser
 		rectangle = new Rectangle((int)position.X, (int)position.Y, laserTexture.Width, laserTexture.Height);
 	}
