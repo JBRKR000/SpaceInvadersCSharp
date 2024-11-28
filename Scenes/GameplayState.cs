@@ -124,6 +124,7 @@ namespace SpaceInvaders
 
 			musicInstance.Volume = 0.1f;
 			musicInstance.Play();
+			musicInstance.IsLooped = true;
             FPSfont = Game.Content.Load<SpriteFont>("arial");
 			pixelfont = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
 
@@ -469,7 +470,7 @@ namespace SpaceInvaders
 					{
 						// Inicjalizacja przeciwników randomPosX = new Random().NextInt64(25, 500);
 						randomPosGen();
-						bossList.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY),1000,  Game));
+						bossList.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY),500,  Game));
 						
 						break;
 					}
