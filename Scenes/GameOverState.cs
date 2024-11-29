@@ -52,28 +52,37 @@ namespace SpaceInvaders
 				highScore = finalScore;
 				SaveHighScore(highScore); // Zapisz nowy najlepszy wynik
 			}
-		}
+            
 
-		public override void LoadContent()
+        }
+
+        public override void LoadContent()
         {
 			background = Game.Content.Load<Texture2D>("Backgrounds/deadBackground");
 			font = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
 			buttonResetTexture = Game.Content.Load<Texture2D>("Controls/buttonReset");
 			buttonMenuTexture = Game.Content.Load<Texture2D>("Controls/buttonMenu");
 			pixelfont = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
-			resetButton = new Button(buttonResetTexture)
-			{
-				Position = new Vector2(690, 540)
 
-			};
+            int screenWidth = Game.GraphicsDevice.Viewport.Width;
+            int screenHeight = Game.GraphicsDevice.Viewport.Height;
+
+            // Środek ekranu
+            float centerX = screenWidth / 2f;
+
+            resetButton = new Button(buttonResetTexture)
+			{
+                Position = new Vector2(centerX - buttonResetTexture.Width / 2f - 175, 640),
+
+            };
 
 			resetButton.Click += ResetButton_Click;
 
 			menuButton = new Button(buttonMenuTexture)
 			{
-				Position = new Vector2(290, 540)
+				Position = new Vector2(centerX - buttonMenuTexture.Width / 2f +175, 640),
 
-			};
+            };
 
 			menuButton.Click += MenuButton_Click;
 
@@ -102,11 +111,11 @@ namespace SpaceInvaders
             
             spriteBatch.Begin();
 			spriteBatch.Draw(background, Game.GraphicsDevice.Viewport.Bounds, Color.White);
-			spriteBatch.DrawString(pixelfont, $"FINAL SCORE: {finalScore}", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 240, 370), Color.Yellow, 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f); //mozna skalowac napisy wow
+			spriteBatch.DrawString(pixelfont, $"FINAL SCORE: {finalScore}", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 240, 470), Color.Yellow, 0f, Vector2.Zero, 1.2f, SpriteEffects.None, 0f); //mozna skalowac napisy wow
 			spriteBatch.DrawString(
 				pixelfont,
 				$"HIGH SCORE: {highScore}",
-				new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 240, 320),
+				new Vector2(Game.GraphicsDevice.Viewport.Width / 2 - 240, 420),
 				Color.Cyan,
 				0f,
 				Vector2.Zero,

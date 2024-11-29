@@ -19,8 +19,8 @@ namespace SpaceInvaders
         {
             
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferHeight = 1080;
-            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 900;
+            _graphics.PreferredBackBufferWidth = 1600;
             _graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
 			IsMouseVisible = true;

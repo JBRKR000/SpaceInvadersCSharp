@@ -30,9 +30,9 @@ public class Boss
 	private Texture2D bulletTexture;
 	protected List<EnemyBullet> bullets;
 	protected double timeSinceLastShot = 0f;
-    
+    public int score;
 
-	public Boss(Texture2D texture, Vector2 position, float bossSpeed, Game1 game, List<EnemyBullet> bullets, Texture2D bulletTexture)
+	public Boss(Texture2D texture, Vector2 position, float bossSpeed, Game1 game, List<EnemyBullet> bullets, Texture2D bulletTexture, int score)
     {
         this.bossTexture = texture;
         this.Game = game;
@@ -43,6 +43,7 @@ public class Boss
 		this.bullets = bullets;
 		this.bulletTexture = bulletTexture;
 		bulletSoundInstance = bulletSound.CreateInstance();
+        this.score = score;
 
 	}
 

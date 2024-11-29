@@ -24,7 +24,8 @@ namespace SpaceInvaders
 
         private List<EnemyBullet> enemybullets;
         private List<Enemy1> enemies;
-        private List<Boss> bossList;
+        private Boss boss;
+		private bool isBossAlive;
         private Texture2D enemyTexture;
         private Texture2D enemyTexture2;
         private Texture2D enemyBullet;
@@ -79,7 +80,6 @@ namespace SpaceInvaders
         
         public GameplayState(Game1 game) : base(game)
         {
-	        bossList = new List<Boss>();
             bullets = new List<SingleBullet>();
             enemybullets = new List<EnemyBullet>();
 			lasers = new List<Laser>();
@@ -90,7 +90,12 @@ namespace SpaceInvaders
             explodeSound = explosion.CreateInstance();
             explodeSound.Volume = 0.5f;
             animatedExplosion = new AnimatedExplosion(Vector2.Zero, rotation, scale, depth);
-            
+            LEVEL = 1;
+            player_score = 0;
+            bullets.Clear();
+            enemybullets.Clear();
+            enemies.Clear();
+
         }
 
         public override void LoadContent()
@@ -171,53 +176,54 @@ namespace SpaceInvaders
 				menuButton.Update(gameTime); // Update the button when the game is paused
 				return;
 			}
+            if (isBossAlive && boss != null && boss.health <= 0)
+            {
+                isBossAlive = false;
+            }
 
 
-			// Normalna aktualizacja gry
-			if (player.health <= 0)
-			{
-				Game.ChangeState(new GameOverState(Game, player_score));
-
-			}
+          
 
 			healthRectangle = new Rectangle(50, 20, player.health * 2, 40);
 			healthBarRectangle = new Rectangle(50, 20, 200, 40);
 
 			player.Update(gameTime);
 
-			for (int i = enemies.Count - 1; i >= 0; i--)
+			for (int i = enemies.Count - 1; i >= 0; i-- )
 			{
-				if (enemies[i].health <= 0)
-				{
-					player_score += enemies[i].score;//dodanie punktów
-													 // Szansa 15% na wygenerowanie power-upa
-					if (random.Next(0, 100) < 99) // 15% szansy
+					if (enemies[i].health <= 0)
 					{
-						PowerUpType type;
-						int randomType = random.Next(0, 3); // Losowanie typu power-upa (0 = Health, 1 = FireRate, 2 = Shield)
-						if (randomType == 0)
-							type = PowerUpType.Health;
-						else if (randomType == 1)
-							type = PowerUpType.FireRate;
-						else
-							type = PowerUpType.Shield;
+						player_score += enemies[i].score;//dodanie punktów
+                                                         // Szansa 15% na wygenerowanie power-upa
+                        if (random.Next(0, 100) < 99) // 15% szansy
+						{
+							PowerUpType type;
+							int randomType = random.Next(0, 3); // Losowanie typu power-upa (0 = Health, 1 = FireRate, 2 = Shield)
+							if (randomType == 0)
+								type = PowerUpType.Health;
+							else if (randomType == 1)
+								type = PowerUpType.FireRate;
+							else
+								type = PowerUpType.Shield;
 
-						Texture2D powerupTexture = type == PowerUpType.Health ? healthPowerupTexture :
-												   type == PowerUpType.FireRate ? fireRatePowerupTexture :
-												   shieldPowerupTexture;
+							Texture2D powerupTexture = type == PowerUpType.Health ? healthPowerupTexture :
+													   type == PowerUpType.FireRate ? fireRatePowerupTexture :
+													   shieldPowerupTexture;
 
-						powerUps.Add(new PowerUp(powerupTexture, enemies[i].rectangle.Location.ToVector2(), type));
+							powerUps.Add(new PowerUp(powerupTexture, enemies[i].rectangle.Location.ToVector2(), type));
+						}
+
+
+						//odtwórz dźwięk wybuchu gdy znika przeciwnik
+						explodeSound.Play();
+						// Usuń przeciwnika po wykonaniu logiki
+						enemies.RemoveAt(i);
 					}
+					
+            }
+			
 
-
-					//odtwórz dźwięk wybuchu gdy znika przeciwnik
-					explodeSound.Play();
-					// Usuń przeciwnika po wykonaniu logiki
-					enemies.RemoveAt(i);
-				}
-			}
-
-			for (int i = powerUps.Count - 1; i >= 0; i--)
+            for (int i = powerUps.Count - 1; i >= 0; i--)
 			{
 				powerUps[i].Update(gameTime);
 
@@ -256,23 +262,24 @@ namespace SpaceInvaders
 				{
 					if (bullets[i].rectangle.Intersects(enemies[j].rectangle))
 					{
-						
 						enemies[j].health -= 10;
 						bullets.RemoveAt(i);
 						break;
 					}
-				}
-				for (int j = bossList.Count - 1; j >= 0; j--)
-				{
-					if (bullets[i].rectangle.Intersects(bossList[j].rectangle))
-					{
-
-						bossList[j].health -= 10;
-						bullets.RemoveAt(i);
-						break;
-					}
-				}
-			}
+                }
+                if (isBossAlive && bullets[i].rectangle.Intersects(boss.rectangle))
+                {
+                    boss.health -= bullets[i].damage;
+                    bullets.RemoveAt(i);
+                    if (boss.health <= 0)
+                    {
+                        isBossAlive = false;
+                        player_score += boss.score;
+                    }
+                    break;
+                }
+            }
+			
 
 
 
@@ -281,13 +288,21 @@ namespace SpaceInvaders
 			{
 				enemy.Update(gameTime);
 			}
-			foreach (var boss in bossList)
-			{
-				boss.Update(gameTime);
-			}
+            if (isBossAlive && boss != null)
+            {
+                boss.Update(gameTime);
+
+                if (boss.health <= 0)
+                {
+                    isBossAlive = false;
+                    player_score += boss.score;
+                    boss = null; // Usunięcie bossa po pokonaniu
+                    explodeSound.Play();
+                }
+            }
 
 
-			for (int i = enemybullets.Count - 1; i >= 0; i--)
+            for (int i = enemybullets.Count - 1; i >= 0; i--)
 			{
 				enemybullets[i].Update(gameTime);
 
@@ -339,17 +354,18 @@ namespace SpaceInvaders
                 }
             }
 
-			//SPRAWDZAM CZY PRZEZSZŁO SIĘ POZIOM
-            if (enemies.Count == 0 || bossList.Count == 0)
+            //SPRAWDZAM CZY PRZEZSZŁO SIĘ POZIOM
+            if (!isBossAlive && enemies.Count == 0)
             {
-	            LEVEL++;
-	            addEnemies();
+                LEVEL++;
+                addEnemies();
             }
 
             if (player.health <= 0)
             {
 	            musicInstance.Stop();
 	            LEVEL = 1;
+                Game.ChangeState(new GameOverState(Game, player_score));
             }
             CalculateFPS(gameTime);
             
@@ -383,15 +399,19 @@ namespace SpaceInvaders
 				spriteBatch.Draw(circleTexture, shieldPosition, Color.White);
 			}
 			player.Draw(spriteBatch);
+            if (isBossAlive && boss != null)
+            {
+                boss.Draw(spriteBatch);
+            }
+
+
+
 
             foreach (var bullet in bullets)
             {
                 bullet.Draw(spriteBatch);
             }
-            foreach (var boss in bossList)
-            {
-	            boss.Draw(spriteBatch);
-            }
+            
             foreach (var enemy in enemies)
             {
                 enemy.Draw(spriteBatch);
@@ -409,7 +429,6 @@ namespace SpaceInvaders
             {
                 powerUp.Draw(spriteBatch);
             }
-
             spriteBatch.DrawString(FPSfont, $"FPS: {fps}", new Vector2(1815, 10), Color.Yellow);
 
 			// Wyświetlanie komunikatu o pauzie
@@ -440,53 +459,50 @@ namespace SpaceInvaders
 
         public void addEnemies()
         {
-	        //SWITCH KTÓRY BĘDZIE DO PRZEŁĄCZANIA SCENARIUSZY DROPU PRZECIWNIKÓW!!!!!
-	        switch (LEVEL)
-	        {
-		        case 1:
-		        {
-			        // Inicjalizacja przeciwników randomPosX = new Random().NextInt64(25, 500);
-			        randomPosGen();
-			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy1(enemyTexture,new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
-			        break;
-		        }
-		        case 2:
-		        {
-			        // Inicjalizacja przeciwników
-			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX,randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
-			        randomPosGen();
-			        enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX,randomPosY), enemyBullet2, enemybullets, Game));
-			        break;
-		        }
-				case 3:
-					{
-						// Inicjalizacja przeciwników randomPosX = new Random().NextInt64(25, 500);
-						randomPosGen();
-						bossList.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY),500,  Game, enemybullets, enemyBullet));
-						
-						break;
-					}
-				
-			}
-	        
+            isBossAlive = false; // Reset na początku każdego poziomu
+            boss = null;         // Upewnienie się, że boss jest usunięty
+
+            switch (LEVEL)
+            {
+                case 1:
+                    {
+                        // Dodanie przeciwników dla poziomu 1
+                        for (int i = 0; i < 5; i++)
+                        {
+                            randomPosGen();
+                            enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+                        }
+                        for (int i = 0; i < 2; i++)
+                        {
+                            randomPosGen();
+                            enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+                        }
+                        break;
+                    }
+                case 2:
+                    {
+                        // Dodanie przeciwników dla poziomu 2
+                        for (int i = 0; i < 8; i++)
+                        {
+                            randomPosGen();
+                            enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+                        }
+                        for (int i = 0; i < 3; i++)
+                        {
+                            randomPosGen();
+                            enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+                        }
+                        break;
+                    }
+                case 3:
+                    {
+                        // Dodanie bossa na poziomie 3
+                        isBossAlive = true;
+                        randomPosGen();
+                        boss = new Boss(bossTexture, new Vector2(randomPosX, randomPosY), 500, Game, enemybullets, enemyBullet, 2000);
+                        break;
+                    }
+            }
         }
 
         public void randomPosGen()

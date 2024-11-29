@@ -20,11 +20,16 @@ namespace SpaceInvaders
 		{
 			background = Game.Content.Load<Texture2D>("Backgrounds/controls1player");
 			buttonBackTexture = Game.Content.Load<Texture2D>("Controls/buttonBack");
-			backButton = new Button(buttonBackTexture)
-			{
-				Position = new Vector2(510, 540)
+            int screenWidth = Game.GraphicsDevice.Viewport.Width;
+            int screenHeight = Game.GraphicsDevice.Viewport.Height;
 
-			};
+            // Środek ekranu
+            float centerX = screenWidth / 2f;
+            backButton = new Button(buttonBackTexture)
+			{
+                Position = new Vector2(centerX - buttonBackTexture.Width / 2f, 700),
+
+            };
 
 			backButton.Click += BackButton_Click;
 		}

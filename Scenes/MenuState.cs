@@ -27,42 +27,49 @@ namespace SpaceInvaders
 			musicInstance.IsLooped = true;
 		}
 
-		public override void LoadContent()
-		{
-			font = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
-			buttonPlayTexture = Game.Content.Load<Texture2D>("Controls/buttonPlay");
-			buttonControlsTexture = Game.Content.Load<Texture2D>("Controls/buttonControls");
-			buttonQuitTexture = Game.Content.Load<Texture2D>("Controls/buttonQuit");
-			background = Game.Content.Load<Texture2D>("Backgrounds/menuBackground");
+        public override void LoadContent()
+        {
+            font = Game.Content.Load<SpriteFont>("Fonts/PixelFont");
+            buttonPlayTexture = Game.Content.Load<Texture2D>("Controls/buttonPlay");
+            buttonControlsTexture = Game.Content.Load<Texture2D>("Controls/buttonControls");
+            buttonQuitTexture = Game.Content.Load<Texture2D>("Controls/buttonQuit");
+            background = Game.Content.Load<Texture2D>("Backgrounds/menuBackground");
 
-			// Inicjalizacja guzików
-			playButton = new Button(buttonPlayTexture)
-			{
-				Position = new Vector2(510, 200),
-			};
-			playButton.Click += StartButton_Click;
+            int screenWidth = Game.GraphicsDevice.Viewport.Width;
+            int screenHeight = Game.GraphicsDevice.Viewport.Height;
 
-			controlsButton = new Button(buttonControlsTexture)
-			{
-				Position = new Vector2(510, 300),
-			};
-			controlsButton.Click += ControlsButton_Click;
+            // Środek ekranu
+            float centerX = screenWidth / 2f;
 
-			quitButton = new Button(buttonQuitTexture)
-			{
-				Position = new Vector2(510, 400),
-			};
-			quitButton.Click += QuitButton_Click;
+            // Inicjalizacja guzików
+            playButton = new Button(buttonPlayTexture)
+            {
+                Position = new Vector2(centerX - buttonPlayTexture.Width / 2f, 300),
+            };
+            playButton.Click += StartButton_Click;
 
-			// Rozpoczęcie muzyki w menu
-			if (!isMusicMenuPlaying)
-			{
-				musicInstance.Play();
-				isMusicMenuPlaying = true;
-			}
-		}
+            controlsButton = new Button(buttonControlsTexture)
+            {
+                Position = new Vector2(centerX - buttonControlsTexture.Width / 2f, 400),
+            };
+            controlsButton.Click += ControlsButton_Click;
 
-		private void StartButton_Click(object sender, System.EventArgs e)
+            quitButton = new Button(buttonQuitTexture)
+            {
+                Position = new Vector2(centerX - buttonQuitTexture.Width / 2f, 500),
+            };
+            quitButton.Click += QuitButton_Click;
+
+            // Rozpoczęcie muzyki w menu
+            if (!isMusicMenuPlaying)
+            {
+                musicInstance.Play();
+                isMusicMenuPlaying = true;
+            }
+        }
+
+
+        private void StartButton_Click(object sender, System.EventArgs e)
 		{
 			StopMusic();
 			Game.ChangeState(new GameplayState(Game));
