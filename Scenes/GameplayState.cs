@@ -75,7 +75,7 @@ namespace SpaceInvaders
 		private Button menuButton;
 		private Texture2D buttonMenuTexture;
 
-		private static int LEVEL { get; set; } = 3;
+		private static int LEVEL { get; set; } = 1;
         
         public GameplayState(Game1 game) : base(game)
         {
@@ -256,8 +256,18 @@ namespace SpaceInvaders
 				{
 					if (bullets[i].rectangle.Intersects(enemies[j].rectangle))
 					{
-						bossList[j].health -= 10;
+						
 						enemies[j].health -= 10;
+						bullets.RemoveAt(i);
+						break;
+					}
+				}
+				for (int j = bossList.Count - 1; j >= 0; j--)
+				{
+					if (bullets[i].rectangle.Intersects(bossList[j].rectangle))
+					{
+
+						bossList[j].health -= 10;
 						bullets.RemoveAt(i);
 						break;
 					}
@@ -470,7 +480,7 @@ namespace SpaceInvaders
 					{
 						// Inicjalizacja przeciwników randomPosX = new Random().NextInt64(25, 500);
 						randomPosGen();
-						bossList.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY),500,  Game));
+						bossList.Add(new Boss(bossTexture, new Vector2(randomPosX, randomPosY),500,  Game, enemybullets, enemyBullet));
 						
 						break;
 					}

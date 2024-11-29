@@ -10,7 +10,7 @@ public enum PowerUpType
 
 public class PowerUp
 {
-	private Texture2D texture;
+	private Texture2D powerupTexture;
 	private Vector2 position;
 	public bool IsCollected { get; private set; }
 	public Rectangle Rectangle { get; private set; }
@@ -18,7 +18,7 @@ public class PowerUp
 
 	public PowerUp(Texture2D texture, Vector2 position, PowerUpType type)
 	{
-		this.texture = texture;
+		this.powerupTexture = texture;
 		this.position = position;
 		this.Type = type;
 		IsCollected = false;
@@ -28,7 +28,7 @@ public class PowerUp
 	public void Update(GameTime gameTime)
 	{
 		position.Y += 150f * (float)gameTime.ElapsedGameTime.TotalSeconds; // Ruch w dół
-		Rectangle = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+		Rectangle = new Rectangle((int)position.X, (int)position.Y, powerupTexture.Width, powerupTexture.Height);
 	}
 
 	public void Collect()
@@ -40,7 +40,7 @@ public class PowerUp
 	{
 		if (!IsCollected)
 		{
-			spriteBatch.Draw(texture, position, Color.White);
+			spriteBatch.Draw(powerupTexture, position, Color.White);
 		}
 	}
 }

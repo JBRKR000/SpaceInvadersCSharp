@@ -82,10 +82,10 @@ internal class Boss_Old : Enemy1
 		Vector2 bulletPosition4 = new Vector2(position.X + enemyTexture.Width / 2 + 155, position.Y + 155);
 
 		// Dodajemy zwykłe pociski
-		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, this, 20)); // inny damage
-		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2, this, 20));
-		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition3, this, 20));
-		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition4, this, 20));
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, 20)); // inny damage
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2, 20));
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition3, 20));
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition4, 20));
 
 		// Dodanie laserów, które będą się poruszać z aktualnym środkiem bossa
 		lasers.Add(new Laser(laserTexture, bulletPosition2, this, 1, position.X + enemyTexture.Width / 2)); // Laser przy bulletPosition2

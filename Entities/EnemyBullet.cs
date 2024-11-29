@@ -10,14 +10,12 @@ namespace SpaceInvaders
         private float bulletSpeed = 600f;
 		internal Rectangle rectangle;
         public int damage;
-		public Enemy1 owner;
 
 
-		public EnemyBullet(Texture2D bulletTexture, Vector2 startPosition, Enemy1 owner,int damage)
+		public EnemyBullet(Texture2D bulletTexture, Vector2 startPosition,int damage)
         {
             this.position = startPosition;
-            this.bulletTexture = bulletTexture;
-            this.owner = owner;
+            this.bulletTexture = bulletTexture;   
 			this.damage = damage;
 			this.rectangle = new Rectangle((int)position.X, (int)position.Y, bulletTexture.Width, bulletTexture.Height);
 		}

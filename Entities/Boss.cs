@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace SpaceInvaders;
@@ -22,25 +24,42 @@ public class Boss
     private int directionX;
     private int directionY;
 
-    public Boss(Texture2D texture, Vector2 position, float bossSpeed, Game1 game)
+	protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/2.wav");
+	protected SoundEffectInstance bulletSoundInstance;
+
+	private Texture2D bulletTexture;
+	protected List<EnemyBullet> bullets;
+	protected double timeSinceLastShot = 0f;
+    
+
+	public Boss(Texture2D texture, Vector2 position, float bossSpeed, Game1 game, List<EnemyBullet> bullets, Texture2D bulletTexture)
     {
         this.bossTexture = texture;
         this.Game = game;
         this.position = position;
         this.bossSpeed = bossSpeed;
-        this.Game = game;
         this.maxHealth = 2000;
         this.health = maxHealth;
-        
-    }
+		this.bullets = bullets;
+		this.bulletTexture = bulletTexture;
+		bulletSoundInstance = bulletSound.CreateInstance();
 
-    public void Update(GameTime gameTime)
+	}
+
+	public void Update(GameTime gameTime)
     {
-        random = new Random();
-        rectangle = new Rectangle((int)position.X, (int)position.Y, bossTexture.Width, bossTexture.Height);
-        timeSinceLastDirectionChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        
 
-        if (timeSinceLastDirectionChange >= directionChangeInterval)
+
+		Random random = new Random();
+		rectangle = new Rectangle((int)position.X, (int)position.Y, bossTexture.Width, bossTexture.Height);
+		timeSinceLastDirectionChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+		double randomDelay = (random.NextDouble() * 10 / 2.5 * 12);
+		randomDelay = randomDelay < 3 ? randomDelay : (random.NextDouble() * 10 / 2.5 * 10);
+		double.Round(randomDelay);
+
+		if (timeSinceLastDirectionChange >= directionChangeInterval)
         {
             directionX = random.Next(-1, 2); 
             directionY = random.Next(-1, 2); 
@@ -55,7 +74,15 @@ public class Boss
         if(position.Y < 0) position.Y = 0;
         if (position.Y > Game.GraphicsDevice.Viewport.Height/2 - bossTexture.Height)
             position.Y = Game.GraphicsDevice.Viewport.Height/2 - bossTexture.Height;
-    }
+
+
+		timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
+		if (timeSinceLastShot >= randomDelay)
+		{
+			Shoot();
+			timeSinceLastShot = 0f;
+		}
+	}
 
     public void Draw(SpriteBatch spriteBatch)
     {
@@ -73,4 +100,19 @@ public class Boss
         spriteBatch.Draw(Game1.CreateRectangleTexture(Game.GraphicsDevice, barWidth, barHeight, healthBarBackgroundColor), barPosition, Color.White);
         spriteBatch.Draw(Game1.CreateRectangleTexture(Game.GraphicsDevice, healthBarCurrentWidth, barHeight, healthBarColor), barPosition, Color.White);
     }
+
+
+	protected virtual void Shoot()
+	{
+		bulletSoundInstance.Volume = 0.25f;
+		if (bulletSoundInstance.State != SoundState.Playing)
+		{
+			bulletSoundInstance.Play();
+		}
+
+		Vector2 bulletPosition1 = new Vector2(position.X + bossTexture.Width / 2, position.Y);
+		Vector2 bulletPosition2 = new Vector2(position.X + bossTexture.Width / 2 - 50, position.Y);
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1,  10));
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2,  10));
+	}
 }
