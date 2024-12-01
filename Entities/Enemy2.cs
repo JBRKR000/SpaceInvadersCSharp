@@ -44,9 +44,7 @@ namespace SpaceInvaders
 
 
 			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2, position.Y);
-			Vector2 bulletPosition2 = new Vector2(position.X + enemyTexture.Width / 2 - 50, position.Y);
-			bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, 20)); //inny damage
-			bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2, 20));
+			bullets.Add(new SpiralEnemyBullet(bulletTexture, bulletPosition1, 20, 1,1));
 		}
     }
 }

@@ -30,9 +30,11 @@ namespace SpaceInvaders
         private Texture2D enemyTexture;
         private Texture2D enemyTexture2;
         private Texture2D enemyTexture3;
+        private Texture2D enemyTexture4;
         private Texture2D enemyBullet;
         private Texture2D enemyBullet2;
         private Texture2D enemyBullet3;
+        private Texture2D enemyBullet4;
 		private Texture2D bossTexture;
 		private SpriteFont FPSfont;
         private int frameCount = 0;
@@ -122,6 +124,10 @@ namespace SpaceInvaders
 
 			enemyTexture3 = Game.Content.Load<Texture2D>("enemy3");
 			enemyBullet3 = Game.Content.Load<Texture2D>("bullet3");
+			
+			
+			enemyTexture4 = Game.Content.Load<Texture2D>("enemy4");
+			enemyBullet4 = Game.Content.Load<Texture2D>("bulletx");
 
 			buttonMenuTexture = Game.Content.Load<Texture2D>("Controls/buttonMenu");
 
@@ -473,16 +479,20 @@ namespace SpaceInvaders
             {
                 case 1:
                     {
-                        // Dodanie przeciwników dla poziomu 1
-                        for (int i = 0; i < 5; i++)
-                        {
-                            randomPosGen();
-                            enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-                        }
-						for (int i = 0; i < 5; i++)
+	                    for (int i = 0; i < 2; i++)
+	                    {
+					          randomPosGen();
+					          enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+	                    }
+						for (int i = 0; i < 2; i++)
 						{
 							randomPosGen();
 							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+						}
+						for (int i = 0; i < 2; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
 						}
 						for (int i = 0; i < 2; i++)
                         {

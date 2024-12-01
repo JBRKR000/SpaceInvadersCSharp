@@ -21,6 +21,11 @@ namespace SpaceInvaders
 
         protected Random random;
         protected int direction = 1;
+        private int directionX;
+        private int directionY;
+        
+        
+        
         protected float directionChangeInterval = 3f;
         protected float timeSinceLastDirectionChange = 0f;
 
@@ -64,14 +69,24 @@ namespace SpaceInvaders
             timeSinceLastDirectionChange += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timeSinceLastDirectionChange >= directionChangeInterval)
             {
-                direction = random.Next(0, 2) == 0 ? -1 : 1;
+                directionX = random.Next(-1, 2);
+                directionY = random.Next(-1, 2);
+
                 timeSinceLastDirectionChange = 0f;
             }
 
-            position.X += direction * enemySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (position.X < 0) position.X = 0;
-            if (position.X > Game.GraphicsDevice.Viewport.Width - enemyTexture.Width)
-                position.X = Game.GraphicsDevice.Viewport.Width - enemyTexture.Width;
+            position.X += directionX * enemySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            position.Y += directionY * enemySpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // Ograniczenia dla osi X (nie do samej krawędzi bocznej)
+            int xMargin = 100; // Odstęp od bocznych krawędzi
+            if (position.X < xMargin) position.X = xMargin;
+            if (position.X > Game.GraphicsDevice.Viewport.Width - enemyTexture.Width - xMargin)
+                position.X = Game.GraphicsDevice.Viewport.Width - enemyTexture.Width - xMargin;
+            int yMargin = 100;
+            // Ograniczenia dla osi Y (górna połowa ekranu)
+            if (position.Y < yMargin) position.Y = yMargin;
+            if (position.Y > Game.GraphicsDevice.Viewport.Height / 2 - enemyTexture.Height - yMargin)
+                position.Y = Game.GraphicsDevice.Viewport.Height / 2 - enemyTexture.Height - yMargin; 
 
             timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (timeSinceLastShot >= randomDelay)

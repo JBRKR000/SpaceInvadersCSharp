@@ -5,9 +5,9 @@ namespace SpaceInvaders
 {
     public class EnemyBullet
     {
-        private Vector2 position;
-        private Texture2D bulletTexture;
-        private float bulletSpeed = 600f;
+        protected Vector2 position;
+        protected Texture2D bulletTexture;
+        protected float bulletSpeed = 600f;
 		internal Rectangle rectangle;
         public int damage;
 
@@ -25,7 +25,7 @@ namespace SpaceInvaders
             spriteBatch.Draw(bulletTexture, position, Color.White);
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
 			
 
