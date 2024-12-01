@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
 using SpaceInvaders.Components;
+using SpaceInvaders.Entities;
 
 namespace SpaceInvaders
 {
@@ -28,8 +29,10 @@ namespace SpaceInvaders
 		private bool isBossAlive;
         private Texture2D enemyTexture;
         private Texture2D enemyTexture2;
+        private Texture2D enemyTexture3;
         private Texture2D enemyBullet;
         private Texture2D enemyBullet2;
+        private Texture2D enemyBullet3;
 		private Texture2D bossTexture;
 		private SpriteFont FPSfont;
         private int frameCount = 0;
@@ -76,7 +79,7 @@ namespace SpaceInvaders
 		private Button menuButton;
 		private Texture2D buttonMenuTexture;
 
-		private static int LEVEL { get; set; } = 1;
+		private static int LEVEL { get; set; }
         
         public GameplayState(Game1 game) : base(game)
         {
@@ -115,6 +118,10 @@ namespace SpaceInvaders
             
             enemyTexture2 = Game.Content.Load<Texture2D>("enemy2");
             enemyBullet2 = Game.Content.Load<Texture2D>("bullet2");
+
+
+			enemyTexture3 = Game.Content.Load<Texture2D>("enemy3");
+			enemyBullet3 = Game.Content.Load<Texture2D>("bullet3");
 
 			buttonMenuTexture = Game.Content.Load<Texture2D>("Controls/buttonMenu");
 
@@ -382,13 +389,13 @@ namespace SpaceInvaders
 			switch (getLEVEL())
             {
 	            case 1:
-		            spriteBatch.DrawString(pixelfont, "LEVEL1", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 700, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+		            spriteBatch.DrawString(pixelfont, "LEVEL1", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 		            break;
 	            case 2:
-		            spriteBatch.DrawString(pixelfont, "LEVEL2", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 700, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+		            spriteBatch.DrawString(pixelfont, "LEVEL2", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 		            break;
                 case 3:
-					spriteBatch.DrawString(pixelfont, "LEVEL3", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 700, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					spriteBatch.DrawString(pixelfont, "LEVEL3", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 					break;
 
 			}
@@ -472,7 +479,12 @@ namespace SpaceInvaders
                             randomPosGen();
                             enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
                         }
-                        for (int i = 0; i < 2; i++)
+						for (int i = 0; i < 5; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+						}
+						for (int i = 0; i < 2; i++)
                         {
                             randomPosGen();
                             enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));

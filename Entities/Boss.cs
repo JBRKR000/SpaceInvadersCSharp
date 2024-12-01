@@ -48,8 +48,8 @@ public class Boss
 	}
 
 	public void Update(GameTime gameTime)
-    {
-        
+	{
+
 
 
 		Random random = new Random();
@@ -61,20 +61,20 @@ public class Boss
 		double.Round(randomDelay);
 
 		if (timeSinceLastDirectionChange >= directionChangeInterval)
-        {
-            directionX = random.Next(-1, 2); 
-            directionY = random.Next(-1, 2); 
+		{
+			directionX = random.Next(-1, 2);
+			directionY = random.Next(-1, 2);
 
-            timeSinceLastDirectionChange = 0f;
-        }
-        position.X += directionX * bossSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        position.Y += directionY * bossSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (position.X < 0) position.X = 0;
-        if (position.X > Game.GraphicsDevice.Viewport.Width - bossTexture.Width)
-            position.X = Game.GraphicsDevice.Viewport.Width - bossTexture.Width;
-        if(position.Y < 0) position.Y = 0;
-        if (position.Y > Game.GraphicsDevice.Viewport.Height/2 - bossTexture.Height)
-            position.Y = Game.GraphicsDevice.Viewport.Height/2 - bossTexture.Height;
+			timeSinceLastDirectionChange = 0f;
+		}
+		position.X += directionX * bossSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+		position.Y += directionY * bossSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+		if (position.X < 0) position.X = 0;
+		if (position.X > Game.GraphicsDevice.Viewport.Width - bossTexture.Width)
+			position.X = Game.GraphicsDevice.Viewport.Width - bossTexture.Width;
+		if (position.Y < 0) position.Y = 0;
+		if (position.Y > Game.GraphicsDevice.Viewport.Height / 2 - bossTexture.Height)
+			position.Y = Game.GraphicsDevice.Viewport.Height / 2 - bossTexture.Height;
 
 
 		timeSinceLastShot += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -85,7 +85,8 @@ public class Boss
 		}
 	}
 
-    public void Draw(SpriteBatch spriteBatch)
+
+	public void Draw(SpriteBatch spriteBatch)
     {
         spriteBatch.Draw(bossTexture, position, Color.White);
         DrawHealthBar(spriteBatch);
@@ -111,9 +112,13 @@ public class Boss
 			bulletSoundInstance.Play();
 		}
 
-		Vector2 bulletPosition1 = new Vector2(position.X + bossTexture.Width / 2, position.Y);
-		Vector2 bulletPosition2 = new Vector2(position.X + bossTexture.Width / 2 - 50, position.Y);
-		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1,  10));
-		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2,  10));
+		Vector2 bulletPosition1 = new Vector2(position.X + bossTexture.Width / 2 - 227, position.Y +110);
+		Vector2 bulletPosition2 = new Vector2(position.X + bossTexture.Width / 2 - 157, position.Y + 110);
+		Vector2 bulletPosition3 = new Vector2(position.X + bossTexture.Width / 2 + 90, position.Y + 110);
+		Vector2 bulletPosition4 = new Vector2(position.X + bossTexture.Width / 2 + 157, position.Y + 110);
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, 20));
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2, 20));
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition3, 20));
+		bullets.Add(new EnemyBullet(bulletTexture, bulletPosition4, 20));
 	}
 }

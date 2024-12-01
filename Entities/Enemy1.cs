@@ -50,7 +50,7 @@ namespace SpaceInvaders
             bulletSoundInstance = bulletSound.CreateInstance();
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             Random random = new Random();
             double randomDelay = (random.NextDouble() * 10 / 2.5 * 12);
