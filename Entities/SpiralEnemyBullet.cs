@@ -9,6 +9,9 @@ namespace SpaceInvaders
         private float rotationSpeed; // Prędkość obrotu
         private float radius;        // Promień okręgu
         private float angle;         // Aktualny kąt w radianach
+        private Vector2 direction;   // Kierunek lotu w stronę gracza
+        private float lifetime;      // Czas życia pocisku
+        private const float maxLifetime = 1.5f; // Maksymalny czas życia w sekundach
 
         public SpiralEnemyBullet(Texture2D bulletTexture, Vector2 startPosition, int damage, float rotationSpeed, float radius)
             : base(bulletTexture, startPosition, damage)
@@ -16,24 +19,33 @@ namespace SpaceInvaders
             this.rotationSpeed = rotationSpeed;
             this.radius = radius;
             this.angle = 0f;
+            this.lifetime = 0f;
+            UpdateDirection();
+        }
+
+        private void UpdateDirection()
+        {
+            Vector2 playerPosition = Player.GetPlayerPos();
+            direction = playerPosition - position;
+            if (direction != Vector2.Zero)
+            {
+                direction.Normalize();
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
-            // Oblicz deltaTime
             var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            // Aktualizuj kąt
-            angle += rotationSpeed * deltaTime;
-
-            // Oblicz ruch w osi X na podstawie kąta i promienia
+            lifetime += deltaTime;
+            if (lifetime >= maxLifetime)
+            {
+                position.X = 10000;
+            }
+            angle += rotationSpeed * deltaTime/10;
             position.X += (float)(Math.Cos(angle) * radius);
-
-            // Poruszaj pocisk w dół w osi Y
-            position.Y += bulletSpeed * deltaTime;
-
-            // Aktualizacja prostokąta kolizji
+            position += direction * bulletSpeed * deltaTime;
             rectangle = new Rectangle((int)position.X, (int)position.Y, bulletTexture.Width, bulletTexture.Height);
+            UpdateDirection();
         }
     }
 }

@@ -16,6 +16,9 @@ namespace SpaceInvaders
 		private float shootInterval = 0.25f;
 		private float timeSinceLastShot = 0f;
 
+		public static Vector2 playerPos;
+		
+
 		public int health = 1000;
 
 		public Rectangle rectangle; // ciało gracza
@@ -120,6 +123,8 @@ namespace SpaceInvaders
 					timeSinceLastShot = 0f;
 				}
 			}
+
+			playerPos = Position;
 		}
 
 		private void Shoot()
@@ -146,5 +151,11 @@ namespace SpaceInvaders
 			isShieldActive = true;
 			shieldTimer = duration;
 		}
+
+		public static Vector2 GetPlayerPos()
+		{
+			return playerPos;
+		}
+		
 	}
 }

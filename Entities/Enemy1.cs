@@ -58,7 +58,7 @@ namespace SpaceInvaders
         public virtual void Update(GameTime gameTime)
         {
             Random random = new Random();
-            double randomDelay = (random.NextDouble() * 10 / 2.5 * 12);
+            double randomDelay = (random.NextDouble() * 10 / 2.5 * 200);
             randomDelay = randomDelay < 3 ? randomDelay : (random.NextDouble() * 10 / 2.5 * 10);
             double.Round(randomDelay);
             Console.WriteLine("**DEBUG** " + randomDelay + " VALUE");

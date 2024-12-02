@@ -9,7 +9,7 @@ namespace SpaceInvaders
     public class Enemy2 : Enemy1
     {
         private Texture2D customBulletTexture;
-        private float customShootInterval = 1.5f;
+        private float customShootInterval = 1023123f;
         public override int score => 300; //nadpisanie scorea
 		
 
@@ -44,7 +44,7 @@ namespace SpaceInvaders
 
 
 			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2, position.Y);
-			bullets.Add(new SpiralEnemyBullet(bulletTexture, bulletPosition1, 20, 1,1));
+			bullets.Add(new SpiralEnemyBullet(bulletTexture, bulletPosition1, 2, 0.01f,0.1f));
 		}
     }
 }
