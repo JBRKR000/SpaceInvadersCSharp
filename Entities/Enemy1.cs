@@ -99,10 +99,9 @@ namespace SpaceInvaders
 		protected virtual void Shoot()
         {
             bulletSoundInstance.Volume = 0.25f;
-            if (bulletSoundInstance.State != SoundState.Playing)
-            {
-                bulletSoundInstance.Play();
-            }
+            
+            bulletSoundInstance.Play();
+            
 
             Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2, position.Y);
             Vector2 bulletPosition2 = new Vector2(position.X + enemyTexture.Width / 2 - 50, position.Y);

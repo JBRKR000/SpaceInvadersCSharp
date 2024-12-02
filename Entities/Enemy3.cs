@@ -11,10 +11,12 @@ namespace SpaceInvaders.Entities
 		private Texture2D customBulletTexture;
 		private float customShootInterval = 1f;
 		public override int score => 50; // Nadpisanie score'a
-
+		protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/4.wav");
+		protected SoundEffectInstance bulletSoundInstance;
 		public Enemy3(Texture2D enemyTexture, Vector2 position, Texture2D bulletTexture, List<EnemyBullet> bullets, Game1 game)
 			: base(enemyTexture, position, bulletTexture, bullets, game)
 		{
+			bulletSoundInstance = bulletSound.CreateInstance();
 			this.customBulletTexture = Game.Content.Load<Texture2D>("bullet3");
 			this.maxHealth = 20; // Więcej zdrowia niż domyślnie
 			this.health = maxHealth;

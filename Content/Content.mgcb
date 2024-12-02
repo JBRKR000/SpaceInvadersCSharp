@@ -549,6 +549,12 @@
 /processorParam:Quality=Best
 /build:Sounds/3.wav
 
+#begin Sounds/4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/4.wav
+
 #begin Sounds/coin.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

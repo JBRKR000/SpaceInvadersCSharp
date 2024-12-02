@@ -11,10 +11,13 @@ namespace SpaceInvaders.Entities
 		private Texture2D customBulletTexture;
 		private float customShootInterval = 1f;
 		public override int score => 50; // Nadpisanie score'a
+		protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/1.wav");
+		protected SoundEffectInstance bulletSoundInstance;
 
 		public Enemy4(Texture2D enemyTexture, Vector2 position, Texture2D bulletTexture, List<EnemyBullet> bullets, Game1 game)
 			: base(enemyTexture, position, bulletTexture, bullets, game)
 		{
+			bulletSoundInstance = bulletSound.CreateInstance();
 			this.customBulletTexture = Game.Content.Load<Texture2D>("bulletx");
 			this.maxHealth = 150;
 			this.health = maxHealth;
@@ -30,10 +33,8 @@ namespace SpaceInvaders.Entities
 		protected override void Shoot()
 		{
 			bulletSoundInstance.Volume = 0.35f;
-			if (bulletSoundInstance.State != SoundState.Playing)
-			{
-				bulletSoundInstance.Play();
-			}
+			
+			bulletSoundInstance.Play();
 
 			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2 + 100 , position.Y + 150);
 			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition1, 10, 10, 5)); // Inny damage

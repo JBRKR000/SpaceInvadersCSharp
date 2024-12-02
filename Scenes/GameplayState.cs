@@ -62,6 +62,9 @@ namespace SpaceInvaders
         //sound
         private SoundEffect explosion = SoundEffect.FromFile("../../../Content/Sounds/enemy_boom.wav");
         private SoundEffectInstance explodeSound;
+        
+        private SoundEffect enemy_hitsound = SoundEffect.FromFile("../../../Content/Sounds/enemy_hit.wav");
+        private SoundEffectInstance enemy_hitsound_instance;
 
         private SoundEffect music = SoundEffect.FromFile("../../../Content/Music/CosmicConquest.wav");
         private SoundEffectInstance musicInstance;
@@ -93,6 +96,7 @@ namespace SpaceInvaders
             random = new Random();
             musicInstance = music.CreateInstance();
             explodeSound = explosion.CreateInstance();
+            enemy_hitsound_instance = enemy_hitsound.CreateInstance();
             explodeSound.Volume = 0.5f;
             animatedExplosion = new AnimatedExplosion(Vector2.Zero, rotation, scale, depth);
             LEVEL = 1;
@@ -275,6 +279,7 @@ namespace SpaceInvaders
 				{
 					if (bullets[i].rectangle.Intersects(enemies[j].rectangle))
 					{
+						enemy_hitsound.Play();
 						enemies[j].health -= 10;
 						bullets.RemoveAt(i);
 						break;
@@ -282,6 +287,7 @@ namespace SpaceInvaders
                 }
                 if (isBossAlive && bullets[i].rectangle.Intersects(boss.rectangle))
                 {
+	                enemy_hitsound.Play();
                     boss.health -= bullets[i].damage;
                     bullets.RemoveAt(i);
                     if (boss.health <= 0)
@@ -484,16 +490,16 @@ namespace SpaceInvaders
 					          // randomPosGen();
 					          // enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
 	              //       }
-						// for (int i = 0; i < 2; i++)
-						// {
-						// 	randomPosGen();
-						// 	enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
-						// }
 						for (int i = 0; i < 2; i++)
 						{
 							randomPosGen();
-							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
 						}
+						// for (int i = 0; i < 2; i++)
+						// {
+						// 	randomPosGen();
+						// 	enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+						// }
 						// for (int i = 0; i < 2; i++)
       //                   {
       //                       randomPosGen();
