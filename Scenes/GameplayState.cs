@@ -489,16 +489,16 @@ namespace SpaceInvaders
 						// 	randomPosGen();
 						// 	enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
 						// }
-						// for (int i = 0; i < 2; i++)
-						// {
-						// 	randomPosGen();
-						// 	enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
-						// }
 						for (int i = 0; i < 2; i++)
-                        {
-                            randomPosGen();
-                            enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
-                        }
+						{
+							randomPosGen();
+							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+						}
+						// for (int i = 0; i < 2; i++)
+      //                   {
+      //                       randomPosGen();
+      //                       enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+      //                   }
                         break;
                     }
                 case 2:

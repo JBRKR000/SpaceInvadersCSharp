@@ -35,12 +35,12 @@ namespace SpaceInvaders.Entities
 				bulletSoundInstance.Play();
 			}
 
-			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2 + 100 , position.Y);
-			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition1, 10, 5, 5)); // Inny damage
-			Vector2 bulletPosition2 = new Vector2(position.X + enemyTexture.Width / 2 , position.Y);
-			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition2, 10, 5, 5)); // Inny damage
-			Vector2 bulletPosition3 = new Vector2(position.X + enemyTexture.Width / 2 -100 , position.Y);
-			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition3, 10, 5, 5)); // Inny damage
+			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2 + 100 , position.Y + 150);
+			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition1, 10, 10, 5)); // Inny damage
+			Vector2 bulletPosition2 = new Vector2(position.X + enemyTexture.Width / 2 , position.Y+150);
+			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition2, 10, 50, 5)); // Inny damage
+			Vector2 bulletPosition3 = new Vector2(position.X + enemyTexture.Width / 2 - 100, position.Y+150);
+			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition3, 10, -10, 5)); // Inny damage
 		}
 	}
 }
