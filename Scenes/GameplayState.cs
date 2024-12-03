@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework.Audio;
 using SpaceInvaders.Components;
 using SpaceInvaders.Entities;
+using System.Reflection.Emit;
 
 namespace SpaceInvaders
 {
@@ -85,7 +86,10 @@ namespace SpaceInvaders
 		private Texture2D buttonMenuTexture;
 
 		private static int LEVEL { get; set; }
-        
+
+        private Vector2 previousBossPosition; // Przechowuje poprzednią pozycję bossa
+        private bool laserActive; // Czy laser jest aktywny
+        private Laser bossLaser;
         public GameplayState(Game1 game) : base(game)
         {
             bullets = new List<SingleBullet>();
@@ -99,12 +103,14 @@ namespace SpaceInvaders
             enemy_hitsound_instance = enemy_hitsound.CreateInstance();
             explodeSound.Volume = 0.5f;
             animatedExplosion = new AnimatedExplosion(Vector2.Zero, rotation, scale, depth);
-            LEVEL = 1;
+            LEVEL = 3;
             player_score = 0;
             bullets.Clear();
             enemybullets.Clear();
             enemies.Clear();
-
+            laserActive = false;
+            bossLaser = null;
+            previousBossPosition = Vector2.Zero;
         }
 
         public override void LoadContent()
@@ -198,10 +204,62 @@ namespace SpaceInvaders
                 isBossAlive = false;
             }
 
+            bool bossMoved = previousBossPosition != boss.position;
 
-          
+            if (isBossAlive && boss != null)
+            {
+                // Zaktualizowanie pozycji lasera na podstawie pozycji bossa
+                if (laserActive)
+                {
+                    // Ustawienie nowej pozycji lasera na podstawie pozycji bossa
+                    bossLaser.Position = new Vector2(boss.position.X + boss.width / 2 - laserTexture.Width / 2, boss.position.Y + boss.height / 2);
+                }
 
-			healthRectangle = new Rectangle(50, 20, player.health * 2, 40);
+                // Sprawdzamy, czy boss stoi, aby stworzyć laser
+                if (boss.position.Y == previousBossPosition.Y && !laserActive) // Jeśli boss stoi, a laser jeszcze nie został stworzony
+                {
+                    laserActive = true;
+                    Vector2 laserPosition = new Vector2(boss.position.X + boss.width / 2 - laserTexture.Width / 2, boss.position.Y + boss.height / 2 +100);
+                    bossLaser = new Laser(laserTexture, laserPosition, new Vector2(0, 0)); // Prędkość (0, 0) – brak ruchu w dół
+                }
+
+                // Jeśli boss się porusza, dezaktywujemy laser
+                if (boss.position.Y != previousBossPosition.Y)
+                {
+                    laserActive = false;
+                    bossLaser = null; // Usunięcie lasera
+                }
+
+                previousBossPosition = boss.position; // Zapamiętanie poprzedniej pozycji bossa
+            }
+
+
+
+            // Aktualizacja lasera, jeśli aktywny
+            if (laserActive && bossLaser != null)
+            {
+                bossLaser.Update(gameTime);
+            }
+
+            for (int i = lasers.Count - 1; i >= 0; i--)
+            {
+                lasers[i].Update(gameTime); // Aktualizujemy laser
+
+                // Sprawdzamy, czy laser koliduje z graczem
+                if (lasers[i].rectangle.Intersects(player.rectangle))
+                {
+                    player.health -= lasers[i].damage; // Zadajemy obrażenia graczowi
+                    lasers.RemoveAt(i); // Usuwamy laser po trafieniu
+                }
+                else if (lasers[i].IsOffScreen()) // Usuwamy laser, jeśli opuścił ekran
+                {
+                    lasers.RemoveAt(i);
+                }
+            }
+
+
+
+            healthRectangle = new Rectangle(50, 20, player.health * 2, 40);
 			healthBarRectangle = new Rectangle(50, 20, 200, 40);
 
 			player.Update(gameTime);
@@ -285,7 +343,7 @@ namespace SpaceInvaders
 						break;
 					}
                 }
-                if (isBossAlive && bullets[i].rectangle.Intersects(boss.rectangle))
+                if (isBossAlive && bullets[i].rectangle.Intersects(boss.Rectangle))
                 {
 	                enemy_hitsound.Play();
                     boss.health -= bullets[i].damage;
@@ -298,12 +356,13 @@ namespace SpaceInvaders
                     break;
                 }
             }
-			
+
+           
 
 
 
 
-			foreach (var enemy in enemies)
+            foreach (var enemy in enemies)
 			{
 				enemy.Update(gameTime);
 			}
@@ -341,28 +400,6 @@ namespace SpaceInvaders
 					}
 			}
 
-
-			for (int i = lasers.Count - 1; i >= 0; i--)
-			{
-				lasers[i].Update(gameTime);
-				if (lasers[i].IsExpired())
-				{
-					lasers.RemoveAt(i); // Usunięcie lasera po 3 sekundach
-				}
-				if (lasers[i].rectangle.Intersects(player.rectangle))
-				{
-					if (player.IsShieldActive)
-					{
-						lasers.RemoveAt(i);
-					}
-					else
-					{
-						player.health -= lasers[i].damage;
-						lasers.RemoveAt(i);
-					}
-					
-				}
-			}
 
 
 			for (int i = bullets.Count - 1; i >= 0; i--)
@@ -423,7 +460,20 @@ namespace SpaceInvaders
                 boss.Draw(spriteBatch);
             }
 
+            if (laserActive && bossLaser != null)
+            {
+                bossLaser.Draw(spriteBatch);
+            }
 
+            if (laserActive && bossLaser != null)
+            {
+                if (bossLaser.rectangle.Intersects(player.rectangle))
+                {
+                    player.health -= bossLaser.damage; // Zadajemy obrażenia graczowi
+                    laserActive = false; // Zatrzymujemy laser
+                    bossLaser = null; // Usuwamy laser po trafieniu gracza
+                }
+            }
 
 
             foreach (var bullet in bullets)
@@ -495,17 +545,17 @@ namespace SpaceInvaders
 							randomPosGen();
 							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
 						}
-						// for (int i = 0; i < 2; i++)
-						// {
-						// 	randomPosGen();
-						// 	enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
-						// }
-						// for (int i = 0; i < 2; i++)
-      //                   {
-      //                       randomPosGen();
-      //                       enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
-      //                   }
-                        break;
+						for (int i = 0; i < 2; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+						}
+						for (int i = 0; i < 2; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+						}
+						break;
                     }
                 case 2:
                     {
