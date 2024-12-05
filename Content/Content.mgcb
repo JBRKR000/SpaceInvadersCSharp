@@ -260,6 +260,18 @@
 /processorParam:TextureFormat=Color
 /build:bullet3.png
 
+#begin bullet5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:bullet5.png
+
 #begin bulletx.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -415,6 +427,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:enemy4.png
+
+#begin enemy5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:enemy5.png
 
 #begin Fonts/PixelFont.spritefont
 /importer:FontDescriptionImporter

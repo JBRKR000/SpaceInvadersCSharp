@@ -32,10 +32,12 @@ namespace SpaceInvaders
         private Texture2D enemyTexture2;
         private Texture2D enemyTexture3;
         private Texture2D enemyTexture4;
+        private Texture2D enemyTexture5;
         private Texture2D enemyBullet;
         private Texture2D enemyBullet2;
         private Texture2D enemyBullet3;
         private Texture2D enemyBullet4;
+		private Texture2D enemyBullet5;
 		private Texture2D bossTexture;
 		private SpriteFont FPSfont;
         private int frameCount = 0;
@@ -103,7 +105,7 @@ namespace SpaceInvaders
             enemy_hitsound_instance = enemy_hitsound.CreateInstance();
             explodeSound.Volume = 0.5f;
             animatedExplosion = new AnimatedExplosion(Vector2.Zero, rotation, scale, depth);
-            LEVEL = 3;
+            LEVEL = 1;
             player_score = 0;
             bullets.Clear();
             enemybullets.Clear();
@@ -138,6 +140,10 @@ namespace SpaceInvaders
 			
 			enemyTexture4 = Game.Content.Load<Texture2D>("enemy4");
 			enemyBullet4 = Game.Content.Load<Texture2D>("bulletx");
+
+			enemyBullet5 = Game.Content.Load<Texture2D>("bullet5");
+			enemyTexture5 = Game.Content.Load<Texture2D>("enemy5");
+
 
 			buttonMenuTexture = Game.Content.Load<Texture2D>("Controls/buttonMenu");
 
@@ -204,7 +210,6 @@ namespace SpaceInvaders
                 isBossAlive = false;
             }
 
-            bool bossMoved = previousBossPosition != boss.position;
 
             if (isBossAlive && boss != null)
             {
@@ -540,21 +545,26 @@ namespace SpaceInvaders
 					          // randomPosGen();
 					          // enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
 	              //       }
-						for (int i = 0; i < 2; i++)
-						{
+                        for(int i = 0; i < 2; i++)
+                        {
 							randomPosGen();
-							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+							enemies.Add(new Enemy5(enemyTexture5, new Vector2(randomPosX, randomPosY), enemyBullet5, enemybullets, Game));
 						}
-						for (int i = 0; i < 2; i++)
-						{
-							randomPosGen();
-							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
-						}
-						for (int i = 0; i < 2; i++)
-						{
-							randomPosGen();
-							enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
-						}
+						//for (int i = 0; i < 2; i++)
+						//{
+						//	randomPosGen();
+						//	enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+						//}
+						//for (int i = 0; i < 2; i++)
+						//{
+						//	randomPosGen();
+						//	enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+						//}
+						//for (int i = 0; i < 2; i++)
+						//{
+						//	randomPosGen();
+						//	enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+						//}
 						break;
                     }
                 case 2:
