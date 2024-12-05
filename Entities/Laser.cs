@@ -4,6 +4,9 @@ using Microsoft.Xna.Framework;
 public class Laser
 {
     public Vector2 Position { get; set; }
+    public Vector2 Position2;
+    public Vector2 Position3;
+    
     public Rectangle rectangle => new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
     private Texture2D texture;
     private Vector2 velocity;
@@ -21,16 +24,22 @@ public class Laser
 
     public void Update(GameTime gameTime)
     {
-        Position += velocity; // Aktualizujemy pozycję lasera na podstawie prędkości
+        Position += velocity;
     }
 
     public bool IsOffScreen()
     {
-        return Position.Y > screenHeight; // Sprawdzanie, czy laser opuścił ekran
+        return Position.Y > screenHeight;
     }
 
     public void Draw(SpriteBatch spriteBatch)
     {
-        spriteBatch.Draw(texture, Position, Color.White); // Rysowanie lasera
+        Position2.X = 70;
+        Position2.Y = 85;
+        Position3.X = -17;
+        Position3.Y = 85;
+        //spriteBatch.Draw(texture, Position + Position2, Color.White);
+        spriteBatch.Draw(texture, Position + Position2, Color.White);
+        
     }
 }

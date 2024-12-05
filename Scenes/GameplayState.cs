@@ -87,6 +87,8 @@ namespace SpaceInvaders
 		private Button menuButton;
 		private Texture2D buttonMenuTexture;
 
+
+		public static Boolean godmode;
 		private static int LEVEL { get; set; }
 
         private Vector2 previousBossPosition; // Przechowuje poprzednią pozycję bossa
@@ -94,6 +96,7 @@ namespace SpaceInvaders
         private Laser bossLaser;
         public GameplayState(Game1 game) : base(game)
         {
+	        godmode = false;
             bullets = new List<SingleBullet>();
             enemybullets = new List<EnemyBullet>();
 			lasers = new List<Laser>();
@@ -186,9 +189,15 @@ namespace SpaceInvaders
 		}
 		public override void Update(GameTime gameTime)
 		{
+			
+			
 			randomPosGen();
 			KeyboardState keyboardState = Keyboard.GetState();
-
+			if (keyboardState.IsKeyDown(Keys.G))
+			{
+				godmode = !godmode;
+			}
+			
 			// Sprawdzenie, czy gracz nacisnął ESC
 			if (keyboardState.IsKeyDown(Keys.Escape) && !wasEscPressed)
 			{
@@ -446,9 +455,11 @@ namespace SpaceInvaders
 		            spriteBatch.DrawString(pixelfont, "LEVEL1", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 		            break;
 	            case 2:
+		            background = Game.Content.Load<Texture2D>("Backgrounds/background2");
 		            spriteBatch.DrawString(pixelfont, "LEVEL2", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 		            break;
                 case 3:
+		            background = Game.Content.Load<Texture2D>("Backgrounds/background3");
 					spriteBatch.DrawString(pixelfont, "LEVEL3", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 					break;
 
@@ -545,21 +556,21 @@ namespace SpaceInvaders
 					          // randomPosGen();
 					          // enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
 	              //       }
-                        for(int i = 0; i < 2; i++)
-                        {
-							randomPosGen();
-							enemies.Add(new Enemy5(enemyTexture5, new Vector2(randomPosX, randomPosY), enemyBullet5, enemybullets, Game));
-						}
+      //                   for(int i = 0; i < 2; i++)
+      //                   {
+						// 	randomPosGen();
+						// 	enemies.Add(new Enemy5(enemyTexture5, new Vector2(randomPosX, randomPosY), enemyBullet5, enemybullets, Game));
+						// }
 						//for (int i = 0; i < 2; i++)
 						//{
 						//	randomPosGen();
 						//	enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
 						//}
-						//for (int i = 0; i < 2; i++)
-						//{
-						//	randomPosGen();
-						//	enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
-						//}
+						for (int i = 0; i < 2; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+						}
 						//for (int i = 0; i < 2; i++)
 						//{
 						//	randomPosGen();

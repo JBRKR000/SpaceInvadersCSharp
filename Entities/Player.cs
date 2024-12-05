@@ -15,7 +15,7 @@ namespace SpaceInvaders
 		private List<SingleBullet> bullets;
 		private float shootInterval = 0.25f;
 		private float timeSinceLastShot = 0f;
-
+		private bool isGodModeActive = false;
 		public static Vector2 playerPos;
 		
 
@@ -65,7 +65,20 @@ namespace SpaceInvaders
 
 			var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 			var keyboardState = Keyboard.GetState();
-
+			if (keyboardState.IsKeyDown(Keys.G))
+			{
+				isGodModeActive = !isGodModeActive;
+				if (isGodModeActive)
+				{
+					isShieldActive = true;
+					ActivateShield(100000);
+				}
+				else
+				{
+					isShieldActive = false;
+					ActivateShield(0);
+				}
+			}
 			// Aktualizacja czasu boosta
 			if (isFireRateBoosted)
 			{
