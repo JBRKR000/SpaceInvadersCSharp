@@ -10,7 +10,7 @@ namespace SpaceInvaders.Entities
 	{
 		private Texture2D customBulletTexture;
 		private float customShootInterval = 1f;
-		public override int score => 50; // Nadpisanie score'a
+		public override int score => 400; // Nadpisanie score'a
 		protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/1.wav");
 		protected SoundEffectInstance bulletSoundInstance;
 
@@ -19,7 +19,7 @@ namespace SpaceInvaders.Entities
 		{
 			bulletSoundInstance = bulletSound.CreateInstance();
 			this.customBulletTexture = Game.Content.Load<Texture2D>("bulletx");
-			this.maxHealth = 150;
+			this.maxHealth = 200;
 			this.health = maxHealth;
 			this.enemySpeed = 50f; // Nadpisanie prędkości, aby była szybsza
 		}
@@ -37,11 +37,11 @@ namespace SpaceInvaders.Entities
 			bulletSoundInstance.Play();
 
 			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2 + 100 , position.Y + 150);
-			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition1, 10, 10, 5)); // Inny damage
+			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition1, 6, 10, 5)); // Inny damage
 			Vector2 bulletPosition2 = new Vector2(position.X + enemyTexture.Width / 2 , position.Y+150);
-			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition2, 10, 50, 5)); // Inny damage
+			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition2, 6, 50, 5)); // Inny damage
 			Vector2 bulletPosition3 = new Vector2(position.X + enemyTexture.Width / 2 - 100, position.Y+150);
-			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition3, 10, -10, 5)); // Inny damage
+			bullets.Add(new AdvancedEnemyBullet(bulletTexture, bulletPosition3, 6, -10, 5)); // Inny damage
 		}
 	}
 }

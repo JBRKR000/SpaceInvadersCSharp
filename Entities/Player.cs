@@ -19,7 +19,7 @@ namespace SpaceInvaders
 		public static Vector2 playerPos;
 		
 
-		public int health = 1000;
+		public int health = 100;
 
 		public Rectangle rectangle; // ciało gracza
 

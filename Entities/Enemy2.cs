@@ -10,7 +10,7 @@ namespace SpaceInvaders
     {
         private Texture2D customBulletTexture;
         private float customShootInterval = 1023123f;
-        public override int score => 300; //nadpisanie scorea
+        public override int score => 250; //nadpisanie scorea
         protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/3.wav");
         protected SoundEffectInstance bulletSoundInstance;
 		
@@ -47,7 +47,7 @@ namespace SpaceInvaders
 
 
 			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2, position.Y);
-			bullets.Add(new SpiralEnemyBullet(bulletTexture, bulletPosition1, 2, 0.01f,0.1f));
+			bullets.Add(new SpiralEnemyBullet(bulletTexture, bulletPosition1, 4, 0.01f,0.1f));
 		}
     }
 }

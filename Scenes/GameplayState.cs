@@ -284,7 +284,7 @@ namespace SpaceInvaders
 					{
 						player_score += enemies[i].score;//dodanie punktów
                                                          // Szansa 15% na wygenerowanie power-upa
-                        if (random.Next(0, 100) < 99) // 15% szansy
+                        if (random.Next(0, 100) < 60) // 60% szansy
 						{
 							PowerUpType type;
 							int randomType = random.Next(0, 3); // Losowanie typu power-upa (0 = Health, 1 = FireRate, 2 = Shield)
@@ -462,6 +462,32 @@ namespace SpaceInvaders
 		            background = Game.Content.Load<Texture2D>("Backgrounds/background3");
 					spriteBatch.DrawString(pixelfont, "LEVEL3", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
 					break;
+				case 4:
+					spriteBatch.DrawString(pixelfont, "LEVEL4", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
+				case 5:
+					background = Game.Content.Load<Texture2D>("Backgrounds/background2");
+					spriteBatch.DrawString(pixelfont, "LEVEL5", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
+				case 6:
+					background = Game.Content.Load<Texture2D>("Backgrounds/background3");
+					spriteBatch.DrawString(pixelfont, "LEVEL6", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
+				case 7:
+					spriteBatch.DrawString(pixelfont, "LEVEL7", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
+				case 8:
+					background = Game.Content.Load<Texture2D>("Backgrounds/background2");
+					spriteBatch.DrawString(pixelfont, "LEVEL8", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
+				case 9:
+					background = Game.Content.Load<Texture2D>("Backgrounds/background3");
+					spriteBatch.DrawString(pixelfont, "LEVEL9", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
+				case 10:
+					background = Game.Content.Load<Texture2D>("Backgrounds/background3");
+					spriteBatch.DrawString(pixelfont, "LEVEL10", new Vector2(Game.GraphicsDevice.Viewport.Width / 2 + 600, Game.GraphicsDevice.Viewport.Height - 75), Color.Red);
+					break;
 
 			}
 			if (player.IsShieldActive)
@@ -547,67 +573,144 @@ namespace SpaceInvaders
             isBossAlive = false; // Reset na początku każdego poziomu
             boss = null;         // Upewnienie się, że boss jest usunięty
 
-            switch (LEVEL)
-            {
-                case 1:
-                    {
-	              //       for (int i = 0; i < 2; i++)
-	              //       {
-					          // randomPosGen();
-					          // enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-	              //       }
-      //                   for(int i = 0; i < 2; i++)
-      //                   {
-						// 	randomPosGen();
-						// 	enemies.Add(new Enemy5(enemyTexture5, new Vector2(randomPosX, randomPosY), enemyBullet5, enemybullets, Game));
-						// }
-						//for (int i = 0; i < 2; i++)
-						//{
-						//	randomPosGen();
-						//	enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
-						//}
+			switch (LEVEL)
+			{
+				case 1:
+					{
+						// Poziom 1: tylko Enemy1
+						for (int i = 0; i < 6; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+						}
+						break;
+					}
+				case 2:
+					{
+						// Poziom 2: tylko Enemy2
+						for (int i = 0; i < 5; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+						}
+						break;
+					}
+				case 3:
+					{
+						// Poziom 3: mieszanka Enemy1 i Enemy2
+						for (int i = 0; i < 4; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+						}
+						for (int i = 0; i < 3; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+						}
+						break;
+					}
+				case 4:
+					{
+						// Poziom 4: dużo Enemy3 (słabi, ale szybcy)
+						for (int i = 0; i < 10; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+						}
+						break;
+					}
+				case 5:
+					{
+						// Poziom 5: Enemy1, Enemy2 i Enemy3
+						for (int i = 0; i < 3; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
+						}
+						for (int i = 0; i < 3; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
+						}
+						for (int i = 0; i < 5; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+						}
+						break;
+					}
+				case 6:
+					{
+						// Poziom 6: wprowadzenie Enemy4
+						for (int i = 0; i < 4; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+						}
 						for (int i = 0; i < 2; i++)
 						{
 							randomPosGen();
 							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
 						}
-						//for (int i = 0; i < 2; i++)
-						//{
-						//	randomPosGen();
-						//	enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
-						//}
 						break;
-                    }
-                case 2:
-                    {
-                        // Dodanie przeciwników dla poziomu 2
-                        for (int i = 0; i < 8; i++)
-                        {
-                            randomPosGen();
-                            enemies.Add(new Enemy1(enemyTexture, new Vector2(randomPosX, randomPosY), enemyBullet, enemybullets, Game));
-                        }
-                        for (int i = 0; i < 3; i++)
-                        {
-                            randomPosGen();
-                            enemies.Add(new Enemy2(enemyTexture2, new Vector2(randomPosX, randomPosY), enemyBullet2, enemybullets, Game));
-                        }
-                        break;
-                    }
-                case 3:
-                    {
-                        // Dodanie bossa na poziomie 3
-                        isBossAlive = true;
-                        randomPosGen();
-                        boss = new Boss(bossTexture, new Vector2(randomPosX, randomPosY), 500, Game, enemybullets, enemyBullet, 2000);
-                        break;
-                    }
-            }
-        }
+					}
+				case 7:
+					{
+						// Poziom 7: mieszanka Enemy3 i Enemy4
+						for (int i = 0; i < 6; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy3(enemyTexture3, new Vector2(randomPosX, randomPosY), enemyBullet3, enemybullets, Game));
+						}
+						for (int i = 0; i < 3; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+						}
+						break;
+					}
+				case 8:
+					{
+						// Poziom 8: wprowadzenie Enemy5
+						for (int i = 0; i < 3; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy4(enemyTexture4, new Vector2(randomPosX, randomPosY), enemyBullet4, enemybullets, Game));
+						}
+						for (int i = 0; i < 2; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy5(enemyTexture5, new Vector2(randomPosX, randomPosY), enemyBullet5, enemybullets, Game));
+						}
+						break;
+					}
+				case 9:
+					{
+						// Poziom 9: dużo Enemy5
+						for (int i = 0; i < 5; i++)
+						{
+							randomPosGen();
+							enemies.Add(new Enemy5(enemyTexture5, new Vector2(randomPosX, randomPosY), enemyBullet5, enemybullets, Game));
+						}
+						break;
+					}
+				case 10:
+					{
+						// Poziom 10: Boss
+						isBossAlive = true;
+						randomPosGen();
+						boss = new Boss(bossTexture, new Vector2(randomPosX, randomPosY), 1000, Game, enemybullets, enemyBullet, 3000);
+						break;
+					}
+			}
 
-        public void randomPosGen()
+		}
+
+		public void randomPosGen()
         {
-	        randomPosX = new Random().NextInt64(25, 500);
-	        randomPosY = new Random().NextInt64(25, 250);
+	        randomPosX = new Random().NextInt64(25, 1500);
+	        randomPosY = new Random().NextInt64(25, 350);
         }
 
         public int getLEVEL()

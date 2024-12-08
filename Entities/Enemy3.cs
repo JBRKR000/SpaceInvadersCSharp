@@ -38,7 +38,7 @@ namespace SpaceInvaders.Entities
 			}
 
 			Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2 + 50, position.Y);
-			bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, 10)); // Inny damage
+			bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, 6)); // Inny damage
 		}
 	}
 }

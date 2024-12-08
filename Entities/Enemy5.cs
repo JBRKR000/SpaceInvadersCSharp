@@ -10,7 +10,7 @@ namespace SpaceInvaders.Entities
 	{
 		private Texture2D customBulletTexture;
 		private float customShootInterval = 1f;
-		public override int score => 250; // Nadpisanie score'a
+		public override int score => 500; // Nadpisanie score'a
 		protected SoundEffect bulletSound = SoundEffect.FromFile("../../../Content/Sounds/1.wav");
 		protected SoundEffectInstance bulletSoundInstance;
 
@@ -22,7 +22,7 @@ namespace SpaceInvaders.Entities
 		{
 			bulletSoundInstance = bulletSound.CreateInstance();
 			this.customBulletTexture = Game.Content.Load<Texture2D>("bullet5");
-			this.maxHealth = 200;
+			this.maxHealth = 250;
 			this.health = maxHealth;
 			this.enemySpeed = 50f; // Nadpisanie prędkości
 		}
@@ -81,7 +81,7 @@ namespace SpaceInvaders.Entities
 			foreach (var direction in directions)
 			{
 				Vector2 bulletPosition = new Vector2(position.X + enemyTexture.Width / 2 - 50, position.Y + enemyTexture.Height / 2);
-				bullets.Add(new DirectionalBullet(customBulletTexture, bulletPosition, 10, direction)); // Tworzymy DirectionalBullet
+				bullets.Add(new DirectionalBullet(customBulletTexture, bulletPosition, 8, direction)); // Tworzymy DirectionalBullet
 			}
 		}
 

@@ -105,8 +105,8 @@ namespace SpaceInvaders
 
             Vector2 bulletPosition1 = new Vector2(position.X + enemyTexture.Width / 2, position.Y);
             Vector2 bulletPosition2 = new Vector2(position.X + enemyTexture.Width / 2 - 50, position.Y);
-            bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, 10));
-            bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2, 10));
+            bullets.Add(new EnemyBullet(bulletTexture, bulletPosition1, 8));
+            bullets.Add(new EnemyBullet(bulletTexture, bulletPosition2, 8));
         }
 
         public void Draw(SpriteBatch spriteBatch)
