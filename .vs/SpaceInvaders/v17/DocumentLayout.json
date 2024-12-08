@@ -3,36 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\gameplaystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:gameplaystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\scenes\\gameplaystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:scenes\\gameplaystate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\gameoverstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:gameoverstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\enemy5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\enemy5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\menustate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:menustate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\enemy4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\enemy4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\controlsstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:controlsstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\enemy1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\enemy1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\enemy1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:enemy1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\enemy2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\enemy2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\enemy3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\enemy3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\components\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:components\\button.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\singlebullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\singlebullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\boss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\boss.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\laser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\laser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\entities\\directonalbullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:entities\\directonalbullet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|c:\\users\\pc\\source\\repos\\spaceinvaderscsharp\\highscore.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{412CFEDD-12B3-4857-ABC0-BBAAE87F7F65}|SpaceInvaders.csproj|solutionrelative:highscore.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,19 +58,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Game1.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Game1.cs",
-              "RelativeDocumentMoniker": "Game1.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Game1.cs",
-              "RelativeToolTip": "Game1.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwBgAAAAtAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "GameplayState.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Scenes\\GameplayState.cs",
+              "RelativeDocumentMoniker": "Scenes\\GameplayState.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Scenes\\GameplayState.cs",
+              "RelativeToolTip": "Scenes\\GameplayState.cs",
+              "ViewState": "AgIAAM0BAAAAAAAAAAAgwOgBAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-07T10:32:34.522Z",
+              "WhenOpened": "2024-11-29T00:43:52.019Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Enemy1.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy1.cs",
+              "RelativeDocumentMoniker": "Entities\\Enemy1.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy1.cs",
+              "RelativeToolTip": "Entities\\Enemy1.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAA8wGwAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T17:10:29.283Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Enemy2.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy2.cs",
+              "RelativeDocumentMoniker": "Entities\\Enemy2.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy2.cs",
+              "RelativeToolTip": "Entities\\Enemy2.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAgwDEAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T13:53:29.223Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Enemy3.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy3.cs",
+              "RelativeDocumentMoniker": "Entities\\Enemy3.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy3.cs",
+              "RelativeToolTip": "Entities\\Enemy3.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAQwCgAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T13:52:14.425Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Enemy4.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy4.cs",
+              "RelativeDocumentMoniker": "Entities\\Enemy4.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy4.cs",
+              "RelativeToolTip": "Entities\\Enemy4.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-08T14:47:46.657Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Enemy5.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy5.cs",
+              "RelativeDocumentMoniker": "Entities\\Enemy5.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Enemy5.cs",
+              "RelativeToolTip": "Entities\\Enemy5.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T18:48:46.027Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -64,92 +150,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Enemy1.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Enemy1.cs",
-              "RelativeDocumentMoniker": "Enemy1.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Enemy1.cs",
-              "RelativeToolTip": "Enemy1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAASAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "SingleBullet.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\SingleBullet.cs",
+              "RelativeDocumentMoniker": "Entities\\SingleBullet.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\SingleBullet.cs",
+              "RelativeToolTip": "Entities\\SingleBullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T12:59:07.989Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ControlsState.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\ControlsState.cs",
-              "RelativeDocumentMoniker": "ControlsState.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\ControlsState.cs",
-              "RelativeToolTip": "ControlsState.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowCkAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-16T18:46:45.675Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GameOverState.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\GameOverState.cs",
-              "RelativeDocumentMoniker": "GameOverState.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\GameOverState.cs",
-              "RelativeToolTip": "GameOverState.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAwwBQAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T19:24:45.395Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MenuState.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\MenuState.cs",
-              "RelativeDocumentMoniker": "MenuState.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\MenuState.cs",
-              "RelativeToolTip": "MenuState.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAowBMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T17:27:11.928Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GameplayState.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\GameplayState.cs",
-              "RelativeDocumentMoniker": "GameplayState.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\GameplayState.cs",
-              "RelativeToolTip": "GameplayState.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAIwLYAAABnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T19:18:30.624Z",
+              "WhenOpened": "2024-12-08T15:20:21.498Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Button.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Components\\Button.cs",
-              "RelativeDocumentMoniker": "Components\\Button.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Components\\Button.cs",
-              "RelativeToolTip": "Components\\Button.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAwwAsAAAAzAAAAAAAAAA==",
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Player.cs",
+              "RelativeDocumentMoniker": "Entities\\Player.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Player.cs",
+              "RelativeToolTip": "Entities\\Player.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAADAAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T17:54:28.373Z"
+              "WhenOpened": "2024-12-08T15:13:17.683Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Program.cs",
-              "RelativeToolTip": "Program.cs",
+              "DocumentIndex": 10,
+              "Title": "DirectonalBullet.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\DirectonalBullet.cs",
+              "RelativeDocumentMoniker": "Entities\\DirectonalBullet.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\DirectonalBullet.cs",
+              "RelativeToolTip": "Entities\\DirectonalBullet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-05T19:02:26.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Laser.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Laser.cs",
+              "RelativeDocumentMoniker": "Entities\\Laser.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Laser.cs",
+              "RelativeToolTip": "Entities\\Laser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T17:27:08.188Z"
+              "WhenOpened": "2024-12-05T17:52:16.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Boss.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Boss.cs",
+              "RelativeDocumentMoniker": "Entities\\Boss.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\Entities\\Boss.cs",
+              "RelativeToolTip": "Entities\\Boss.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAC8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-23T11:46:13.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "highscore.txt",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\highscore.txt",
+              "RelativeDocumentMoniker": "highscore.txt",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\SpaceInvadersCSharp\\highscore.txt",
+              "RelativeToolTip": "highscore.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-11-23T17:32:22.331Z"
             }
           ]
         }
